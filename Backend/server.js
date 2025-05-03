@@ -14,8 +14,7 @@ app.use(express.json());
 
 // MongoDB Atlas connection
 mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+  
 })
   .then(() => console.log("✅ Connected to MongoDB Atlas"))
   .catch((error) => console.error("❌ MongoDB connection error:", error));
@@ -24,7 +23,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 const studentSchema = new mongoose.Schema({
   firstName: String,
   lastName: String,
-  email: { type: String, unique: true },
+  email:  String ,
   password: String,
   ageGroup: String,
   houseNo: String,
@@ -59,8 +58,10 @@ app.get("/", (req, res) => {
 // Register API
 app.post("/api/register", async (req, res) => {
   try {
+    console.log("request body,", req.body);
     const newStudent = new Student(req.body);
     await newStudent.save();
+    
     res.status(201).json({ message: "Registration successful!" });
   } catch (error) {
     console.error("Registration Error:", error);

@@ -24,7 +24,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 const studentSchema = new mongoose.Schema({
   firstName: String,
   lastName: String,
-  email: { type: String, unique: true },
+  email: { type: String },
   password: String,
   ageGroup: String,
   houseNo: String,

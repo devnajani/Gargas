@@ -18,7 +18,7 @@ const ExamLogin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/api/login", {
+      const response = await fetch("https://gargas-1.onrender.com/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -50,7 +50,7 @@ const ExamLogin = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/validate-email", {
+      const response = await fetch("https://gargas-1.onrender.com/api/validate-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: forgotEmail }),
@@ -75,7 +75,7 @@ const ExamLogin = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/reset-password", {
+      const response = await fetch("https://gargas-1.onrender.com/api/reset-password", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: forgotEmail, password: newPassword }),

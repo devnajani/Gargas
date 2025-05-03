@@ -14,7 +14,7 @@ const Mcq = () => {
 
   useEffect(() => {
     if (selectedLanguage) {
-      fetch(`http://localhost:5000/api/mcqs/${selectedLanguage}`)
+      fetch(`https://gargas-1.onrender.com/api/mcqs/${selectedLanguage}`)
         .then((res) => res.json())
         .then((data) => setQuestions(data))
         .catch((error) => console.error(error));
@@ -46,7 +46,7 @@ const Mcq = () => {
 
   const handleSubmit = async () => {
     const userId = localStorage.getItem("userId");
-    const response = await fetch("http://localhost:5000/api/submit-exam", {
+    const response = await fetch("https://gargas-1.onrender.com/api/submit-exam", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId, answers, language: selectedLanguage }), // Send selected language as part of the payload

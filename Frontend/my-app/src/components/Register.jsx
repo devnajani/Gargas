@@ -47,6 +47,7 @@ const Register = () => {
       toast.error("Please enter your email to send OTP.");
       return;
     }
+    // doneee
     try {
       const response = await fetch("https://gargas-1.onrender.com/api/send-otp", {
         method: "POST",

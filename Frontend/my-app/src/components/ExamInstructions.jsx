@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const ExamInstructions = () => {
   const [agreed, setAgreed] = useState(false);
@@ -13,7 +15,7 @@ const ExamInstructions = () => {
     if (agreed) {
       navigate("/mcq"); // Redirect to MCQ page
     } else {
-      alert("Please agree to the instructions before starting the exam.");
+      toast.error("Please agree to the instructions before starting the exam.");
     }
   };
 
@@ -22,6 +24,7 @@ const ExamInstructions = () => {
       className="flex justify-center items-center h-screen bg-cover bg-center" 
       style={{ backgroundImage: "url('./images/Main.png')" }}
     >
+      <ToastContainer />
       <div className="bg-white bg-opacity-90 p-6 rounded-lg shadow-lg w-[600px]">
         <h2 className="text-2xl font-bold text-center mb-4">Exam Instructions</h2>
         <div className="text-gray-800 space-y-3 text-md">

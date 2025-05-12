@@ -63,7 +63,14 @@ const Mcq = () => {
   };
 
   return (
-    <div className="relative flex h-screen">
+    <div className="relative flex flex-col h-screen">
+      {/* Timer */}
+      <div className="w-full text-center py-2 bg-gray-100 text-lg font-semibold text-red-600">
+        Time Left: {Math.floor(timeLeft / 60)}:
+        {timeLeft % 60 < 10 ? "0" : ""}
+        {timeLeft % 60}
+      </div>
+
       {/* Language Selection Modal */}
       {showLanguageModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
@@ -81,10 +88,10 @@ const Mcq = () => {
           {/* Modal Content */}
           <div className="relative bg-white p-8 rounded-lg shadow-lg text-center backdrop-blur-md w-[90%] max-w-[500px] mx-auto">
             <h2 className="text-2xl font-bold mb-4">Select Your Language</h2>
-            <div className="flex justify-between space-x-4">
+            <div className="flex flex-col space-y-4">
               <button
                 onClick={() => handleLanguageSelect("Hindi")}
-                className={`p-2 rounded border-2 text-lg w-[30%] ${
+                className={`p-2 rounded border-2 text-lg ${
                   selectedLanguage === "Hindi"
                     ? "bg-red-500 text-white border-red-500"
                     : "bg-white text-red-500 border-red-500"
@@ -94,7 +101,7 @@ const Mcq = () => {
               </button>
               <button
                 onClick={() => handleLanguageSelect("Gujarati")}
-                className={`p-2 rounded border-2 text-lg w-[30%] ${
+                className={`p-2 rounded border-2 text-lg ${
                   selectedLanguage === "Gujarati"
                     ? "bg-orange-500 text-white border-orange-500"
                     : "bg-white text-orange-500 border-orange-500"
@@ -104,7 +111,7 @@ const Mcq = () => {
               </button>
               <button
                 onClick={() => handleLanguageSelect("English")}
-                className={`p-2 rounded border-2 text-lg w-[30%] ${
+                className={`p-2 rounded border-2 text-lg ${
                   selectedLanguage === "English"
                     ? "bg-red-500 text-white border-red-500"
                     : "bg-white text-red-500 border-red-500"
@@ -120,53 +127,8 @@ const Mcq = () => {
       {/* Main Exam Content */}
       {!showLanguageModal && (
         <>
-          {/* Left Side: Question Navigation */}
-          <div className={`w-1/4 p-4 border-r ${showThankYouModal ? "blur-sm" : ""}`}>
-            <h2 className="text-xl font-bold mb-4">Questions</h2>
-            <div className="grid grid-cols-5 gap-2 mb-4">
-              {questions.map((_, index) => (
-                <button
-                  key={index}
-                  className={`p-2 rounded-full ${
-                    answers[questions[index]?._id]
-                      ? "bg-green-500 text-white"
-                      : reviewQuestions.includes(index)
-                      ? "bg-yellow-500 text-white"
-                      : "bg-gray-200"
-                  } ${currentIndex === index ? "border-2 border-yellow-500" : ""}`}
-                  onClick={() => setCurrentIndex(index)}
-                >
-                  {index + 1}
-                </button>
-              ))}
-            </div>
-
-            {/* Buttons Container */}
-            <div className="flex space-x-4 mt-4">
-              {/* Mark as Review Button */}
-              <button
-                onClick={() => toggleReview(currentIndex)}
-                className={`w-[48%] p-2 rounded ${
-                  reviewQuestions.includes(currentIndex)
-                    ? "bg-yellow-500 text-white"
-                    : "bg-yellow-400"
-                }`}
-              >
-                {reviewQuestions.includes(currentIndex) ? "Unmark Review" : "Mark as Review"}
-              </button>
-
-              {/* Submit Button */}
-              <button
-                onClick={handleSubmit}
-                className="w-[48%] p-2 bg-green-500 text-white font-bold rounded"
-              >
-                Submit Exam
-              </button>
-            </div>
-          </div>
-
-          {/* Right Side: MCQs */}
-          <div className={`w-3/4 p-6 ${showThankYouModal ? "blur-sm" : ""}`}>
+          {/* Question Section */}
+          <div className="flex-1 p-4">
             {questions.length > 0 && (
               <>
                 <h3 className="text-lg font-semibold">{`Q${currentIndex + 1}. ${
@@ -191,64 +153,72 @@ const Mcq = () => {
                 </div>
               </>
             )}
-
-            {/* Navigation Buttons */}
-            <div className="mt-4 flex justify-between">
-              <button
-                onClick={() => setCurrentIndex((prev) => Math.max(prev - 1, 0))}
-                className={`px-4 py-2 rounded ${
-                  currentIndex === 0
-                    ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                    : "bg-blue-500 text-white"
-                }`}
-                disabled={currentIndex === 0}
-              >
-                Previous
-              </button>
-              <button
-                onClick={() =>
-                  setCurrentIndex((prev) => Math.min(prev + 1, questions.length - 1))
-                }
-                className={`px-4 py-2 rounded ${
-                  currentIndex === questions.length - 1
-                    ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                    : "bg-blue-500 text-white"
-                }`}
-                disabled={currentIndex === questions.length - 1}
-              >
-                Next
-              </button>
-            </div>
-
-            {/* Timer */}
-            <div className="mt-4 text-right text-lg font-semibold text-red-600">
-              Time Left: {Math.floor(timeLeft / 60)}:
-              {timeLeft % 60 < 10 ? "0" : ""}
-              {timeLeft % 60}
-            </div>
           </div>
 
-          {/* Thank You Modal */}
-          {showThankYouModal && (
-            <div className="fixed inset-0 flex items-center justify-center bg-opacity-50">
-              <div className="bg-white p-8 rounded-lg shadow-lg text-center border-4 border-yellow-500 w-[90%] max-w-[600px] mx-auto">
-                <h2 className="text-3xl font-bold mb-4 text-yellow-500">Thank You!</h2>
-                <p className="text-lg mb-4">
-                  Your exam has been submitted successfully.
-                </p>
-                <p className="text-lg mb-4">
-                  कृतज्ञो भव! धन्यवादः पुनः आगच्छतु! (Be grateful! Thank you, come again!)
-                </p>
+          {/* Navigation Section */}
+          <div className="fixed bottom-0 left-0 right-0 bg-white p-4 shadow-lg">
+            {/* Question Numbers */}
+            <div className="flex overflow-x-auto space-x-2 mb-4">
+              {questions.map((_, index) => (
                 <button
-                  onClick={() => navigate("/home")}
-                  className="mt-4 px-6 py-3 bg-yellow-500 text-white rounded-lg font-semibold"
+                  key={index}
+                  className={`w-[60px] h-[60px] flex items-center justify-center rounded-lg border ${
+                    answers[questions[index]?._id]
+                      ? "bg-green-500 text-white"
+                      : reviewQuestions.includes(index)
+                      ? "bg-yellow-500 text-white"
+                      : "bg-gray-200"
+                  } ${currentIndex === index ? "border-2 border-yellow-500" : ""}`}
+                  onClick={() => setCurrentIndex(index)}
+                  style={{ minWidth: "60px", minHeight: "60px" }} // Ensure consistent size
                 >
-                  Close
+                  {index + 1}
                 </button>
-              </div>
+              ))}
             </div>
-          )}
+
+            {/* Buttons */}
+            <div className="flex justify-between space-x-4">
+              <button
+                onClick={() => toggleReview(currentIndex)}
+                className={`w-[48%] p-2 rounded ${
+                  reviewQuestions.includes(currentIndex)
+                    ? "bg-yellow-500 text-white"
+                    : "bg-yellow-400"
+                }`}
+              >
+                {reviewQuestions.includes(currentIndex) ? "Unmark Review" : "Mark as Review"}
+              </button>
+              <button
+                onClick={handleSubmit}
+                className="w-[48%] p-2 bg-green-500 text-white font-bold rounded"
+              >
+                Submit Exam
+              </button>
+            </div>
+          </div>
         </>
+      )}
+
+      {/* Thank You Modal */}
+      {showThankYouModal && (
+        <div className="fixed inset-0 flex items-center justify-center bg-opacity-50">
+          <div className="bg-white p-8 rounded-lg shadow-lg text-center border-4 border-yellow-500 w-[90%] max-w-[600px] mx-auto">
+            <h2 className="text-3xl font-bold mb-4 text-yellow-500">Thank You!</h2>
+            <p className="text-lg mb-4">
+              Your exam has been submitted successfully.
+            </p>
+            <p className="text-lg mb-4">
+              कृतज्ञो भव! धन्यवादः पुनः आगच्छतु! (Be grateful! Thank you, come again!)
+            </p>
+            <button
+              onClick={() => navigate("/home")}
+              className="mt-4 px-6 py-3 bg-yellow-500 text-white rounded-lg font-semibold"
+            >
+              Close
+            </button>
+          </div>
+        </div>
       )}
     </div>
   );

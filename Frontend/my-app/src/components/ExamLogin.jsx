@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const ExamLogin = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -27,25 +29,26 @@ const ExamLogin = () => {
       const data = await response.json();
       if (response.ok) {
         localStorage.setItem("userId", data.userId);
+        toast.success("Login successful!");
         navigate("/instructions");
       } else {
-        alert(data.error);
+        toast.error(data.error);
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("Server Error! Please try again.");
+      toast.error("Server Error! Please try again.");
     }
   };
 
   const handleForgotPassword = async () => {
     if (!forgotEmail) {
-      alert("Please enter your email.");
+      toast.error("Please enter your email.");
       return;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(forgotEmail)) {
-      alert("Invalid email address.");
+      toast.error("Invalid email address.");
       return;
     }
 
@@ -59,18 +62,19 @@ const ExamLogin = () => {
       const data = await response.json();
       if (response.ok) {
         setIsEmailValid(true);
+        toast.success("Email validated.");
       } else {
-        alert(data.error || "Email not found.");
+        toast.error(data.error || "Email not found.");
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("Server Error! Please try again.");
+      toast.error("Server Error! Please try again.");
     }
   };
 
   const handleResetPassword = async () => {
     if (!newPassword) {
-      alert("Please enter a new password.");
+      toast.error("Please enter a new password.");
       return;
     }
 
@@ -83,17 +87,17 @@ const ExamLogin = () => {
 
       const data = await response.json();
       if (response.ok) {
-        alert("Password reset successfully.");
+        toast.success("Password reset successfully.");
         setForgotPasswordModal(false);
         setForgotEmail("");
         setNewPassword("");
         setIsEmailValid(false);
       } else {
-        alert(data.error);
+        toast.error(data.error);
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("Server Error! Please try again.");
+      toast.error("Server Error! Please try again.");
     }
   };
 
@@ -102,6 +106,7 @@ const ExamLogin = () => {
       className="flex justify-center items-center h-screen bg-cover bg-center"
       style={{ backgroundImage: "url('/images/Main.png')" }}
     >
+      <ToastContainer />
       <div className="bg-gradient-to-b from-[#F5E6C6] to-[#EAD7A4] p-6 rounded-lg shadow-lg w-96">
         <h2 className="text-2xl font-bold text-center mb-4">Exam Login</h2>
         <form onSubmit={handleSubmit}>
@@ -149,7 +154,7 @@ const ExamLogin = () => {
               <span
                 onClick={() => setShowPassword(!showPassword)}
                 className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer text-gray-600"
-                style={{ fontSize: "1.5rem" }} // Adjust the size of the icon
+                style={{ fontSize: "1.5rem" }}
               >
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </span>

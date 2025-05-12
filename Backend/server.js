@@ -2,38 +2,46 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
+const nodemailer = require("nodemailer");
 
 dotenv.config(); // Load environment variables from .env
 
 const app = express();
-const PORT = 5000 || 3000
+const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors("*"));
 app.use(express.json());
 
 // MongoDB Atlas connection
-mongoose.connect(process.env.MONGODB_URI, {
-  
-})
+mongoose
+  .connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => console.log("✅ Connected to MongoDB Atlas"))
   .catch((error) => console.error("❌ MongoDB connection error:", error));
+
+// In-memory OTP storage
+const otpStore = {};
 
 // Student Schema
 const studentSchema = new mongoose.Schema({
   firstName: String,
   lastName: String,
-  email:  String ,
+  email: { type: String, unique: true, required: true },
   password: String,
   ageGroup: String,
-  houseNo: String,
-  society: String,
-  street: String,
-  landmark: String,
-  city: String,
-  state: String,
-  pincode: String,
-  country: String,
+  phoneNumber: {
+    type: String,
+    validate: {
+      validator: function (v) {
+        return /^\d{10}$/.test(v); // Ensures exactly 10 digits
+      },
+      message: (props) => `${props.value} is not a valid 10-digit phone number!`,
+    },
+    required: [true, "Phone number is required"],
+  },
   marks: { type: Number, default: 0 },
 });
 
@@ -57,15 +65,30 @@ app.get("/", (req, res) => {
 
 // Register API
 app.post("/api/register", async (req, res) => {
+  const { firstName, lastName, email, phoneNumber, password, ageGroup } = req.body;
+
+  if (!firstName || !lastName || !email || !phoneNumber || !password || !ageGroup) {
+    return res.status(400).json({ error: "All fields are required." });
+  }
+
   try {
-    console.log("request body,", req.body);
-    const newStudent = new Student(req.body);
+    const newStudent = new Student({
+      firstName,
+      lastName,
+      email,
+      password,
+      ageGroup,
+      phoneNumber,
+    });
     await newStudent.save();
-    
     res.status(201).json({ message: "Registration successful!" });
   } catch (error) {
     console.error("Registration Error:", error);
-    res.status(400).json({ error: "Error saving student data" });
+    if (error.code === 11000) {
+      res.status(400).json({ error: "Email already exists." });
+    } else {
+      res.status(400).json({ error: "Error saving student data" });
+    }
   }
 });
 
@@ -116,6 +139,61 @@ app.post("/api/reset-password", async (req, res) => {
   } catch (error) {
     console.error("Error resetting password:", error);
     res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// Send OTP to email
+app.post("/api/send-otp", async (req, res) => {
+  const { email } = req.body;
+  if (!email) {
+    return res.status(400).json({ message: "Email is required" });
+  }
+  const otp = Math.floor(100000 + Math.random() * 900000).toString(); // 6-digit OTP
+
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+    tls: {
+      rejectUnauthorized: false,
+    },
+  });
+
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: email,
+    subject: "Your OTP Code for Registration",
+    text: `Your OTP is: ${otp}\n\nPlease enter this OTP to complete your registration. This code will expire in 2 minutes.`,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    otpStore[email] = otp;
+
+    // Expire OTP after 2 minutes
+    setTimeout(() => {
+      delete otpStore[email];
+      console.log(`OTP for ${email} expired and deleted.`);
+    }, 2 * 60 * 1000);
+
+    res.json({ success: true, message: "OTP sent successfully" });
+  } catch (error) {
+    console.error("Error sending OTP:", error);
+    res.status(500).json({ success: false, message: "Email not sent" });
+  }
+});
+
+// Verify OTP
+app.post("/api/verify-otp", (req, res) => {
+  const { email, otp } = req.body;
+
+  if (otpStore[email] && otpStore[email] === otp) {
+    delete otpStore[email]; // Delete OTP after successful verification
+    res.json({ success: true, message: "OTP verified successfully" });
+  } else {
+    res.status(400).json({ success: false, message: "Invalid or expired OTP" });
   }
 });
 

@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 5000;
 app.use(cors("*"));
 app.use(express.json());
 
-// MongoDB Atlas connection
+// MongoDB Atlas connection5
 mongoose
   .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,

@@ -244,7 +244,7 @@ const Register = () => {
               >
                 Send OTP
               </button>
-            </div>
+            </div> 
 
             {/* Password */}
             <div className="relative flex-1">

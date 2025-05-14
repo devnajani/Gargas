@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
@@ -11,7 +11,26 @@ const ExamLogin = () => {
   const [forgotEmail, setForgotEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [isEmailValid, setIsEmailValid] = useState(false);
+  const [forgotOtp, setForgotOtp] = useState(['', '', '', '', '', '']);
+  const [isForgotOtpModalOpen, setIsForgotOtpModalOpen] = useState(false);
+  const [forgotOtpTimer, setForgotOtpTimer] = useState(120);
+  const [forgotOtpValidationMessage, setForgotOtpValidationMessage] = useState("");
+  const [isForgotOtpValid, setIsForgotOtpValid] = useState(false);
+  const [forgotOtpSent, setForgotOtpSent] = useState(false);
+  const forgotOtpRefs = useRef([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    let interval;
+    if (isForgotOtpModalOpen && forgotOtpTimer > 0) {
+      interval = setInterval(() => {
+        setForgotOtpTimer((prev) => prev - 1);
+      }, 1000);
+    } else if (forgotOtpTimer === 0) {
+      closeForgotOtpModal();
+    }
+    return () => clearInterval(interval);
+  }, [isForgotOtpModalOpen, forgotOtpTimer]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -99,6 +118,105 @@ const ExamLogin = () => {
       console.error("Error:", error);
       toast.error("Server Error! Please try again.");
     }
+  };
+
+  const handleSendForgotOtp = async () => {
+    if (!forgotEmail) {
+      toast.error("Please enter your email to send OTP.");
+      return;
+    }
+    try {
+      const response = await fetch("https://gargas-1.onrender.com/api/send-otp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: forgotEmail }),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        setIsForgotOtpModalOpen(true);
+        setForgotOtpTimer(120);
+        setForgotOtp(['', '', '', '', '', '']);
+        setForgotOtpValidationMessage('');
+        setIsForgotOtpValid(false);
+        setForgotOtpSent(true);
+        toast.success("OTP sent successfully to your email.");
+      } else {
+        toast.error("Error: " + (data.message || "Failed to send OTP"));
+      }
+    } catch (error) {
+      console.error("Error sending OTP:", error);
+      toast.error("Failed to send OTP. Please try again.");
+    }
+  };
+
+  const handleForgotOtpChange = (value, index) => {
+    if (!/^\d?$/.test(value)) return;
+    const newOtp = [...forgotOtp];
+    newOtp[index] = value;
+    setForgotOtp(newOtp);
+    if (value && index < 5) {
+      forgotOtpRefs.current[index + 1]?.focus();
+    }
+    if (!value && index > 0) {
+      forgotOtpRefs.current[index - 1]?.focus();
+    }
+  };
+
+  const handleVerifyForgotOtp = async () => {
+    const enteredOtp = forgotOtp.join('');
+    if (enteredOtp.length !== 6) {
+      setForgotOtpValidationMessage('Please enter a valid 6-digit OTP.');
+      setIsForgotOtpValid(false);
+      toast.error("Please enter a valid 6-digit OTP.");
+      return;
+    }
+    try {
+      const response = await fetch("https://gargas-1.onrender.com/api/verify-otp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: forgotEmail, otp: enteredOtp }),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        setForgotOtpValidationMessage("OTP Verified Successfully!");
+        setIsForgotOtpValid(true);
+        toast.success("OTP Verified Successfully!");
+        setTimeout(() => {
+          closeForgotOtpModal();
+          setIsEmailValid(true); // Allow password reset after OTP
+        }, 1000);
+      } else {
+        setForgotOtpValidationMessage("Incorrect OTP. Please re-enter.");
+        setIsForgotOtpValid(false);
+        toast.error("Incorrect OTP. Please re-enter.");
+      }
+    } catch (error) {
+      console.error("Error verifying OTP:", error);
+      setForgotOtpValidationMessage('Failed to verify OTP. Please try again.');
+      setIsForgotOtpValid(false);
+      toast.error("Failed to verify OTP. Please try again.");
+    }
+  };
+
+  const handleResendForgotOtp = async () => {
+    setForgotOtp(['', '', '', '', '', '']);
+    setForgotOtpTimer(120);
+    setForgotOtpValidationMessage('');
+    setIsForgotOtpValid(false);
+    await handleSendForgotOtp();
+  };
+
+  const closeForgotOtpModal = () => {
+    setIsForgotOtpModalOpen(false);
+    setForgotOtp(['', '', '', '', '', '']);
+    setForgotOtpValidationMessage('');
+    // Do NOT reset isForgotOtpValid here!
+  };
+
+  const formatForgotOtpTimer = () => {
+    const minutes = Math.floor(forgotOtpTimer / 60);
+    const seconds = forgotOtpTimer % 60;
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   };
 
   return (
@@ -195,6 +313,14 @@ const ExamLogin = () => {
               className="w-full px-4 py-3 border border-gray-500 rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-orange-500 placeholder-[#3B3D40] text-lg bg-transparent"
               style={{ fontFamily: "Arial, sans-serif", fontSize: "16px" }}
             />
+            {!isEmailValid && (
+              <button
+                onClick={handleSendForgotOtp}
+                className="w-full bg-yellow-500 text-white px-4 py-2 rounded hover:bg-orange-600 mb-4"
+              >
+                Send OTP
+              </button>
+            )}
             {isEmailValid && (
               <div className="relative">
                 <input
@@ -215,27 +341,24 @@ const ExamLogin = () => {
               </div>
             )}
             <div className="flex justify-end space-x-2 mt-6">
-              {!isEmailValid ? (
-                <button
-                  onClick={handleForgotPassword}
-                  className="w-full bg-yellow-500 text-white px-4 py-2 rounded hover:bg-orange-600"
-                >
-                  Validate Email
-                </button>
-              ) : (
+              {isEmailValid ? (
                 <button
                   onClick={handleResetPassword}
                   className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
                 >
                   Reset Password
                 </button>
-              )}
+              ) : null}
               <button
                 onClick={() => {
                   setForgotPasswordModal(false);
                   setForgotEmail("");
                   setNewPassword("");
                   setIsEmailValid(false);
+                  setIsForgotOtpModalOpen(false);
+                  setForgotOtp(['', '', '', '', '', '']);
+                  setForgotOtpValidationMessage('');
+                  setIsForgotOtpValid(false);
                 }}
                 className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
               >
@@ -243,6 +366,48 @@ const ExamLogin = () => {
               </button>
             </div>
           </div>
+          {/* OTP Modal for Forgot Password */}
+          {isForgotOtpModalOpen && (
+            <div className="fixed inset-0 flex items-center justify-center z-50">
+              <div className="bg-white p-6 rounded-lg shadow-lg w-96 space-y-4">
+                <h3 className="text-xl font-bold text-center">Enter OTP</h3>
+                <p className="text-center text-gray-600">Please enter the 6-digit OTP sent to your email.</p>
+                <div className="flex justify-center space-x-2">
+                  {forgotOtp.map((digit, index) => (
+                    <input
+                      key={index}
+                      type="text"
+                      maxLength="1"
+                      value={digit}
+                      onChange={(e) => handleForgotOtpChange(e.target.value, index)}
+                      ref={el => forgotOtpRefs.current[index] = el}
+                      className="w-10 h-10 text-center border border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 text-lg"
+                    />
+                  ))}
+                </div>
+                {forgotOtpValidationMessage && (
+                  <p className={`text-center text-lg ${isForgotOtpValid ? "text-green-600" : "text-red-600"}`}>
+                    {forgotOtpValidationMessage}
+                  </p>
+                )}
+                <div className="flex justify-between items-center">
+                  <button
+                    className="text-white px-4 py-2 rounded-full shadow-md bg-yellow-500 hover:bg-yellow-400"
+                    onClick={handleVerifyForgotOtp}
+                  >
+                    Validate OTP
+                  </button>
+                  <button
+                    className="text-white px-4 py-2 rounded-full shadow-md bg-gray-500 hover:bg-gray-400"
+                    onClick={handleResendForgotOtp}
+                  >
+                    Resend OTP
+                  </button>
+                </div>
+                <p className="text-center text-gray-600">Time remaining: {formatForgotOtpTimer()}</p>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>

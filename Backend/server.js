@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 5000;
 app.use(cors("*"));
 app.use(express.json());
 
-// MongoDB Atlas connection5
+// MongoDB Atlas connection
 mongoose
   .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
@@ -43,6 +43,7 @@ const studentSchema = new mongoose.Schema({
     required: [true, "Phone number is required"],
   },
   marks: { type: Number, default: 0 },
+  isExamComplete: { type: Boolean, default: false }, // ✅ Ensured in schema
 });
 
 const Student = mongoose.model("Student", studentSchema);
@@ -63,7 +64,7 @@ app.get("/", (req, res) => {
   res.send("🚀 Welcome to the Exam Portal Backend! API is working.");
 });
 
-// Register API
+// ✅ Registration API
 app.post("/api/register", async (req, res) => {
   const { firstName, lastName, email, phoneNumber, password, ageGroup } = req.body;
 
@@ -79,6 +80,7 @@ app.post("/api/register", async (req, res) => {
       password,
       ageGroup,
       phoneNumber,
+      isExamComplete: false, // ✅ Explicitly set
     });
     await newStudent.save();
     res.status(201).json({ message: "Registration successful!" });
@@ -92,16 +94,27 @@ app.post("/api/register", async (req, res) => {
   }
 });
 
+// ✅ Login API with Exam Completion Check
 // Login API
 app.post("/api/login", async (req, res) => {
   const { email, password } = req.body;
-  const user = await Student.findOne({ email });
 
-  if (!user || user.password !== password) {
-    return res.status(401).json({ error: "Invalid email or password" });
+  try {
+    const user = await Student.findOne({ email });
+
+    if (!user || user.password !== password) {
+      return res.status(401).json({ error: "Invalid email or password" });
+    }
+
+    if (user.isExamComplete) {
+      return res.status(403).json({ error: "You have already completed the exam." });
+    }
+
+    res.json({ message: "Login successful!", userId: user._id });
+  } catch (error) {
+    console.error("Login error:", error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
-
-  res.json({ message: "Login successful!", userId: user._id });
 });
 
 // Validate Email API
@@ -246,12 +259,30 @@ app.post("/api/submit-exam", async (req, res) => {
       }
     });
 
-    await Student.findByIdAndUpdate(userId, { marks: score });
+    await Student.findByIdAndUpdate(userId, {
+      marks: score,
+      isExamComplete: true, // ✅ Update field on exam submission
+    });
 
     res.json({ message: "Exam submitted successfully!", score });
   } catch (error) {
     console.error("Error submitting exam:", error);
     res.status(500).json({ error: "Failed to submit exam" });
+  }
+});
+
+// 🔧 Optional One-Time Fix: Add `isExamComplete: false` to old users
+app.get("/api/fix-missing-field", async (req, res) => {
+  try {
+    const result = await Student.updateMany(
+      { isExamComplete: { $exists: false } },
+      { $set: { isExamComplete: false } }
+    );
+    res.json({
+      message: `Patched ${result.modifiedCount} documents.`,
+    });
+  } catch (err) {
+    res.status(500).json({ error: "Failed to patch documents" });
   }
 });
 

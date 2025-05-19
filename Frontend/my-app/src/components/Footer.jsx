@@ -26,15 +26,17 @@ const Footer = () => {
         <div className="flex flex-col items-center sm:items-center space-y-4 text-gray-800">
           <p className="flex items-center space-x-3">
             <FaMapMarkerAlt className="text-lg text-red-600" />
-            <span className="font-medium">108 Divine Path, Varanasi, India</span>
+            <span className="font-medium">
+              SHOP NO 4, Life plus, JAY SOCIETY COMPLEX, NEAR, Gandhi Baug Rd, Mani Nagar, Amreli, Gujarat 365601
+            </span>
           </p>
           <p className="flex items-center space-x-3">
             <FaPhoneAlt className="text-lg text-green-600" />
-            <span className="font-medium">+91 98765 43210</span>
+            <span className="font-medium">+91 9408624869</span>
           </p>
           <p className="flex items-center space-x-3">
             <FaEnvelope className="text-lg text-blue-600" />
-            <span className="font-medium">contact@dharmikwisdom.com</span>
+            <span className="font-medium">infogargas15@gmail.com</span>
           </p>
         </div>
 
@@ -66,7 +68,7 @@ const Footer = () => {
 
       {/* Copyright Section */}
       <div className="mt-8 text-sm text-gray-600 border-t border-gray-400 w-full text-center pt-4 px-4">
-        © 2025 Dharmik Wisdom. All Rights Reserved.
+    
       </div>
     </footer>
   );

@@ -36,14 +36,14 @@ const studentSchema = new mongoose.Schema({
     type: String,
     validate: {
       validator: function (v) {
-        return /^\d{10}$/.test(v); // Ensures exactly 10 digits
+        return /^\d{10}$/.test(v);
       },
       message: (props) => `${props.value} is not a valid 10-digit phone number!`,
     },
     required: [true, "Phone number is required"],
   },
   marks: { type: Number, default: 0 },
-  isExamComplete: { type: Boolean, default: false }, // ✅ Ensured in schema
+  isExamComplete: { type: Boolean, default: false },
 });
 
 const Student = mongoose.model("Student", studentSchema);
@@ -80,7 +80,7 @@ app.post("/api/register", async (req, res) => {
       password,
       ageGroup,
       phoneNumber,
-      isExamComplete: false, // ✅ Explicitly set
+      isExamComplete: false,
     });
     await newStudent.save();
     res.status(201).json({ message: "Registration successful!" });
@@ -94,8 +94,7 @@ app.post("/api/register", async (req, res) => {
   }
 });
 
-// ✅ Login API with Exam Completion Check
-// Login API
+// ✅ Login API
 app.post("/api/login", async (req, res) => {
   const { email, password } = req.body;
 
@@ -117,7 +116,7 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
-// Validate Email API
+// ✅ Email Validation
 app.post("/api/validate-email", async (req, res) => {
   try {
     const { email } = req.body;
@@ -134,15 +133,11 @@ app.post("/api/validate-email", async (req, res) => {
   }
 });
 
-// Reset Password API
+// ✅ Password Reset
 app.post("/api/reset-password", async (req, res) => {
   try {
     const { email, password } = req.body;
-    const user = await Student.findOneAndUpdate(
-      { email },
-      { password },
-      { new: true }
-    );
+    const user = await Student.findOneAndUpdate({ email }, { password }, { new: true });
 
     if (!user) {
       return res.status(404).json({ error: "Email not found." });
@@ -155,13 +150,14 @@ app.post("/api/reset-password", async (req, res) => {
   }
 });
 
-// Send OTP to email
+// ✅ Send OTP
 app.post("/api/send-otp", async (req, res) => {
   const { email } = req.body;
   if (!email) {
     return res.status(400).json({ message: "Email is required" });
   }
-  const otp = Math.floor(100000 + Math.random() * 900000).toString(); // 6-digit OTP
+
+  const otp = Math.floor(100000 + Math.random() * 900000).toString();
 
   const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -185,7 +181,6 @@ app.post("/api/send-otp", async (req, res) => {
     await transporter.sendMail(mailOptions);
     otpStore[email] = otp;
 
-    // Expire OTP after 2 minutes
     setTimeout(() => {
       delete otpStore[email];
       console.log(`OTP for ${email} expired and deleted.`);
@@ -198,19 +193,19 @@ app.post("/api/send-otp", async (req, res) => {
   }
 });
 
-// Verify OTP
+// ✅ Verify OTP
 app.post("/api/verify-otp", (req, res) => {
   const { email, otp } = req.body;
 
   if (otpStore[email] && otpStore[email] === otp) {
-    delete otpStore[email]; // Delete OTP after successful verification
+    delete otpStore[email];
     res.json({ success: true, message: "OTP verified successfully" });
   } else {
     res.status(400).json({ success: false, message: "Invalid or expired OTP" });
   }
 });
 
-// Fetch MCQs
+// ✅ Fetch MCQs
 app.get("/api/mcqs/:language", async (req, res) => {
   try {
     const { language } = req.params;
@@ -234,7 +229,7 @@ app.get("/api/mcqs/:language", async (req, res) => {
   }
 });
 
-// Submit Exam
+// ✅ Submit Exam
 app.post("/api/submit-exam", async (req, res) => {
   try {
     const { userId, answers, language } = req.body;
@@ -261,7 +256,7 @@ app.post("/api/submit-exam", async (req, res) => {
 
     await Student.findByIdAndUpdate(userId, {
       marks: score,
-      isExamComplete: true, // ✅ Update field on exam submission
+      isExamComplete: true,
     });
 
     res.json({ message: "Exam submitted successfully!", score });
@@ -271,22 +266,25 @@ app.post("/api/submit-exam", async (req, res) => {
   }
 });
 
-// 🔧 Optional One-Time Fix: Add `isExamComplete: false` to old users
+// ✅ Patch Missing Field
 app.get("/api/fix-missing-field", async (req, res) => {
   try {
     const result = await Student.updateMany(
       { isExamComplete: { $exists: false } },
       { $set: { isExamComplete: false } }
     );
-    res.json({
-      message: `Patched ${result.modifiedCount} documents.`,
-    });
+    res.json({ message: `Patched ${result.modifiedCount} documents.` });
   } catch (err) {
     res.status(500).json({ error: "Failed to patch documents" });
   }
 });
 
-// Start Server
+// ✅ ✅ ✅ Add Keep-Alive /ping Route (NEW)
+app.get("/ping", (req, res) => {
+  res.send("OK");
+});
+
+// ✅ Start Server
 app.listen(PORT, () =>
   console.log(`🚀 Server running on http://localhost:${PORT}`)
 );

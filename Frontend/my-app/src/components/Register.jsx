@@ -208,7 +208,7 @@ const handlePayment = async () => {
     const order = await response.json();
 
     const options = {
-      key: "rzp_live_vQpFsa1pydrPxg",
+      key: "rzp_live_BmCt2F8nCvJqpE",
       amount: order.amount,
       currency: "INR",
       name: "Ramayan Championship",

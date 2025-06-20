@@ -188,6 +188,56 @@ const Register = () => {
       toast.error("Server Error! Please try again.");
     }
   };
+const handlePayment = async () => {
+  if (!formData.firstName || !formData.lastName || !formData.email || !formData.phoneNumber || !formData.password || !formData.ageGroup) {
+    toast.error("Please fill all details before payment.");
+    return;
+  }
+
+  if (!otpSent || !isOtpValid) {
+    toast.error("Please verify your email with OTP before payment.");
+    return;
+  }
+
+  try {
+    const response = await fetch("https://gargas-1.onrender.com/api/create-order", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+    });
+
+    const order = await response.json();
+
+    const options = {
+      key: "rzp_live_vQpFsa1pydrPxg",
+      amount: order.amount,
+      currency: "INR",
+      name: "Ramayan Championship",
+      description: "Exam Registration Fee",
+      order_id: order.id,
+      prefill: {
+        name: `${formData.firstName} ${formData.lastName}`,
+        email: formData.email,
+        contact: formData.phoneNumber,
+      },
+      handler: async function () {
+        await handleSubmit({ preventDefault: () => {} }); // this saves data after payment success
+        toast.success("Payment Successful! You are registered.");
+      },
+      modal: {
+        ondismiss: function () {
+          toast.warn("Payment cancelled.");
+        }
+      }
+    };
+
+    const razor = new window.Razorpay(options);
+    razor.open();
+
+  } catch (err) {
+    console.error(err);
+    toast.error("Payment failed. Please try again.");
+  }
+};
 
   return (
     <div className="relative min-h-screen bg-cover bg-center" style={{ backgroundImage: `url(/images/Main.png)` }}>
@@ -244,7 +294,7 @@ const Register = () => {
               >
                 Send OTP
               </button>
-            </div> 
+            </div>
 
             {/* Password */}
             <div className="relative flex-1">
@@ -306,18 +356,18 @@ const Register = () => {
             </div>
 
             <button
-              className={`text-white px-6 py-2 rounded-full shadow-md transition duration-300 w-full ${
-                isOtpValid &&
-                formData.firstName &&
-                formData.lastName &&
-                formData.email &&
-                formData.password &&
-                formData.ageGroup &&
-                /^\d{10}$/.test(formData.phoneNumber)
+              type="button"
+              onClick={handlePayment}
+              className={`text-white px-6 py-2 rounded-full shadow-md transition duration-300 w-full ${isOtpValid &&
+                  formData.firstName &&
+                  formData.lastName &&
+                  formData.email &&
+                  formData.password &&
+                  formData.ageGroup &&
+                  /^\d{10}$/.test(formData.phoneNumber)
                   ? 'bg-yellow-500 hover:bg-yellow-400'
                   : 'bg-gray-400 cursor-not-allowed'
-              }`}
-              type="submit"
+                }`}
               disabled={
                 !isOtpValid ||
                 !formData.firstName ||
@@ -328,8 +378,9 @@ const Register = () => {
                 !/^\d{10}$/.test(formData.phoneNumber)
               }
             >
-              Go to Payment
+              Go to Paytm / UPI / Card (₹250)
             </button>
+
           </form>
         </div>
       </div>

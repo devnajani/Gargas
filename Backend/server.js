@@ -286,7 +286,7 @@ app.post("/api/create-order", async (req, res) => {
   });
 
   const options = {
-    amount: 25000, // 250 INR in paisa
+    // amount: 25000,
     currency: "INR",
     receipt: "receipt_" + Date.now(),
   };
@@ -297,6 +297,51 @@ app.post("/api/create-order", async (req, res) => {
   } catch (error) {
     console.error("Error creating Razorpay order:", error);
     res.status(500).json({ error: "Failed to create order" });
+  }
+});
+app.post("/api/send-receipt", async (req, res) => {
+  const { name, email, phone, ageGroup, amount, transactionId } = req.body;
+
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "infogargas15@gmail.com",
+      pass: "dpylpswjklvlpyhi", // ✅ use App Password
+    },
+  });
+
+  const mailOptions = {
+    from: '"Gargas" <infogargas15@gmail.com>',
+    to: email,
+    subject: "🧾 Gargas | Ramayan Championship Receipt",
+    html: `
+      <div style="font-family: Arial, sans-serif; border:1px solid #ccc; padding:20px; border-radius:8px; max-width:500px; margin:auto;">
+        <h2 style="text-align:center; color:#2d3748;">🧾 Payment Receipt</h2>
+        <p>Dear <strong>${name}</strong>,</p>
+        <p>Thank you for registering for the <strong>Ramayan Championship</strong>. We have received your payment of <strong>₹${amount}</strong>.</p>
+
+        <hr style="margin: 20px 0;" />
+
+        <p><strong>📧 Email:</strong> ${email}</p>
+        <p><strong>📱 Phone:</strong> ${phone}</p>
+        <p><strong>🎯 Age Group:</strong> ${ageGroup}</p>
+        <p><strong>💳 Payment ID:</strong> ${transactionId}</p>
+        <p><strong>🕒 Status:</strong> <span style="color: green;">Paid</span></p>
+
+        <hr style="margin: 20px 0;" />
+
+        <p style="text-align:center;">This is an auto-generated receipt for your payment.<br/>If you didn’t initiate this, please contact <a href="mailto:infogargas15@gmail.com">infogargas15@gmail.com</a>.</p>
+        <p style="text-align:center; font-size:14px; color:#777;">© 2025 Gargas Foundation</p>
+      </div>
+    `,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    res.status(200).json({ success: true });
+  } catch (error) {
+    console.error("Error sending receipt email:", error);
+    res.status(500).json({ success: false, message: "Failed to send email" });
   }
 });
 

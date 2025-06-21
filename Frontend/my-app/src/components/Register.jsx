@@ -188,56 +188,69 @@ const Register = () => {
       toast.error("Server Error! Please try again.");
     }
   };
-const handlePayment = async () => {
-  if (!formData.firstName || !formData.lastName || !formData.email || !formData.phoneNumber || !formData.password || !formData.ageGroup) {
-    toast.error("Please fill all details before payment.");
-    return;
-  }
+  const handlePayment = async () => {
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.phoneNumber || !formData.password || !formData.ageGroup) {
+      toast.error("Please fill all details before payment.");
+      return;
+    }
 
-  if (!otpSent || !isOtpValid) {
-    toast.error("Please verify your email with OTP before payment.");
-    return;
-  }
+    if (!otpSent || !isOtpValid) {
+      toast.error("Please verify your email with OTP before payment.");
+      return;
+    }
 
-  try {
-    const response = await fetch("https://gargas-1.onrender.com/api/create-order", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-    });
+    try {
+      const response = await fetch("https://gargas-1.onrender.com/api/create-order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+      });
 
-    const order = await response.json();
+      const order = await response.json();
 
-    const options = {
-      key: "rzp_live_BmCt2F8nCvJqpE",
-      amount: order.amount,
-      currency: "INR",
-      name: "Ramayan Championship",
-      description: "Exam Registration Fee",
-      order_id: order.id,
-      prefill: {
-        name: `${formData.firstName} ${formData.lastName}`,
-        email: formData.email,
-        contact: formData.phoneNumber,
-      },
-      handler: async function () {
-        await handleSubmit({ preventDefault: () => {} }); // this saves data after payment success
-        toast.success("Payment Successful! You are registered.");
-      },
-      modal: {
-        ondismiss: function () {
-          toast.warn("Payment cancelled.");
+      const options = {
+        key: "rzp_live_BmCt2F8nCvJqpE",
+        amount: order.amount,
+        currency: "INR",
+        name: "Ramayan Championship",
+        description: "Exam Registration Fee",
+        order_id: order.id,
+        prefill: {
+          name: `${formData.firstName} ${formData.lastName}`,
+          email: formData.email,
+          contact: formData.phoneNumber,
+        },
+        handler: async function () {
+          await handleSubmit({ preventDefault: () => { } }); // this saves data after payment success
+          toast.success("Payment Successful! You are registered.");
+
+          // ✅ Send email receipt
+          await fetch("https://gargas-1.onrender.com/api/send-receipt", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              name: `${formData.firstName} ${formData.lastName}`,
+              email: formData.email,
+              phone: formData.phoneNumber,
+              ageGroup: formData.ageGroup,
+              amount: 250,
+            }),
+          });
+        },
+        modal: {
+          ondismiss: function () {
+            toast.warn("Payment cancelled.");
+          }
         }
-      }
-    };
+      };
 
-    const razor = new window.Razorpay(options);
-    razor.open();
+      const razor = new window.Razorpay(options);
+      razor.open();
 
-  } catch (err) {
-    console.error(err);
-    toast.error("Payment failed. Please try again.");
-  }
-};
+    } catch (err) {
+      console.error(err);
+      toast.error("Payment failed. Please try again.");
+    }
+  };
 
   return (
     <div className="relative min-h-screen bg-cover bg-center" style={{ backgroundImage: `url(/images/Main.png)` }}>
@@ -359,14 +372,14 @@ const handlePayment = async () => {
               type="button"
               onClick={handlePayment}
               className={`text-white px-6 py-2 rounded-full shadow-md transition duration-300 w-full ${isOtpValid &&
-                  formData.firstName &&
-                  formData.lastName &&
-                  formData.email &&
-                  formData.password &&
-                  formData.ageGroup &&
-                  /^\d{10}$/.test(formData.phoneNumber)
-                  ? 'bg-yellow-500 hover:bg-yellow-400'
-                  : 'bg-gray-400 cursor-not-allowed'
+                formData.firstName &&
+                formData.lastName &&
+                formData.email &&
+                formData.password &&
+                formData.ageGroup &&
+                /^\d{10}$/.test(formData.phoneNumber)
+                ? 'bg-yellow-500 hover:bg-yellow-400'
+                : 'bg-gray-400 cursor-not-allowed'
                 }`}
               disabled={
                 !isOtpValid ||

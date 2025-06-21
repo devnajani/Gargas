@@ -85,7 +85,20 @@ const Register = () => {
       otpRefs.current[index - 1]?.focus();
     }
   };
+const handleOtpPaste = (e, index) => {
+  const pasted = e.clipboardData.getData("text").trim();
+  if (!/^\d{6}$/.test(pasted)) return;
 
+  const otpArray = pasted.split('').slice(0, 6);
+  setOtp(otpArray);
+
+  const lastIndex = otpArray.length - 1;
+  if (otpRefs.current[lastIndex]) {
+    otpRefs.current[lastIndex].focus();
+  }
+
+  e.preventDefault();
+};
   // Verify OTP API
   const handleVerifyOtp = async () => {
     const enteredOtp = otp.join('');
@@ -412,6 +425,7 @@ const Register = () => {
                   maxLength="1"
                   value={digit}
                   onChange={(e) => handleOtpChange(e.target.value, index)}
+                  onPaste={(e) => handleOtpPaste(e, index)}  // ✅ Add this line
                   ref={el => otpRefs.current[index] = el}
                   className="w-10 h-10 text-center border border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 text-lg"
                 />

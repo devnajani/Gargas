@@ -213,7 +213,7 @@
         const order = await response.json();
 
         const options = {
-          key: "rzp_live_BmCt2F8nCvJqpE", // Replace with your Razorpay Live Key
+          key: "rzp_live_IRl0nV0JgZFIVC", // Replace with your Razorpay Live Key
           amount: order.amount,
           currency: "INR",
           name: "Ramayan Championship",

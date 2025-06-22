@@ -5,7 +5,8 @@ import {
   FaEnvelope,
   FaFacebook,
   FaInstagram,
-} from "react-icons/fa";
+  FaYoutube,
+} from "react-icons/fa"; 
 
 const Footer = () => {
   return (
@@ -47,26 +48,38 @@ const Footer = () => {
         </div>
 
         {/* Social Media Links */}
-        <div className="flex flex-col items-center sm:items-end space-y-4">
-          <p className="text-base sm:text-lg font-medium text-gray-800">Follow Us</p>
+        <div className="flex flex-col items-center sm:items-end space-y-4 justify-center">
+          <p className="text-base sm:text-lg font-medium text-gray-800">Support & Follow Us</p>
           <div className="flex space-x-4">
             <a
-              href="#"
-              className="p-3 rounded-full border border-gray-600 hover:bg-blue-700 hover:text-white transition-all flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12"
+              href="https://www.facebook.com/gargas/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 rounded-full border border-gray-600 ransition-all flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12"
             >
               <FaFacebook className="text-lg sm:text-xl" />
             </a>
             <a
-              href="#"
-              className="p-3 rounded-full border border-gray-600 hover:bg-pink-600 hover:text-white transition-all flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12"
+              href="https://www.instagram.com/gargas_official"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 rounded-full border border-gray-600 transition-all flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12"
             >
               <FaInstagram className="text-lg sm:text-xl" />
             </a>
             <a
               href="mailto:infogargas15@gmail.com"
-              className="p-3 rounded-full border border-gray-600 hover:bg-red-500 hover:text-white transition-all flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12"
+              className="p-3 rounded-full border border-gray-600  transition-all flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12"
             >
               <FaEnvelope className="text-lg sm:text-xl" />
+            </a>
+            <a
+              href="https://www.youtube.com/@gargas"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 rounded-full border border-gray-600  transition-all flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12"
+            >
+              <FaYoutube className="text-lg sm:text-xl" />
             </a>
           </div>
         </div>
@@ -74,7 +87,7 @@ const Footer = () => {
 
       {/* Copyright */}
       <div className="mt-10 text-sm text-gray-600 border-t border-gray-400 w-full text-center pt-4 px-4">
-        © 2025 Dharmik Wisdom. All rights reserved.
+        © 2025 Gargas. All rights reserved.
       </div>
     </footer>
   );

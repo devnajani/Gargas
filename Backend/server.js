@@ -4,6 +4,7 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const nodemailer = require("nodemailer");
 const Razorpay = require("razorpay");
+const crypto = require("crypto");
 
 dotenv.config(); // Load environment variables from .env
 
@@ -279,6 +280,9 @@ app.get("/api/fix-missing-field", async (req, res) => {
     res.status(500).json({ error: "Failed to patch documents" });
   }
 });
+
+
+// rozarpay-------------
 app.post("/api/create-order", async (req, res) => {
   const instance = new Razorpay({
     key_id: process.env.RAZORPAY_KEY_ID,
@@ -286,7 +290,7 @@ app.post("/api/create-order", async (req, res) => {
   });
 
   const options = {
-    // amount: 25000,
+    amount: 25000,
     currency: "INR",
     receipt: "receipt_" + Date.now(),
   };
@@ -306,7 +310,7 @@ app.post("/api/send-receipt", async (req, res) => {
     service: "gmail",
     auth: {
       user: "infogargas15@gmail.com",
-      pass: "dpylpswjklvlpyhi", // ✅ use App Password
+      pass: "dpylpswjklvlpyhi", 
     },
   });
 
@@ -342,6 +346,24 @@ app.post("/api/send-receipt", async (req, res) => {
   } catch (error) {
     console.error("Error sending receipt email:", error);
     res.status(500).json({ success: false, message: "Failed to send email" });
+  }
+});
+
+
+
+// ✅ Razorpay Verify Payment
+app.post("/api/verify-payment", (req, res) => {
+  const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
+
+  const generatedSignature = crypto
+    .createHmac("sha256", process.env.RAZORPAY_SECRET)
+    .update(razorpay_order_id + "|" + razorpay_payment_id)
+    .digest("hex");
+
+  if (generatedSignature === razorpay_signature) {
+    res.status(200).json({ success: true, message: "Payment verified successfully." });
+  } else {
+    res.status(400).json({ success: false, message: "Invalid signature. Possible tampering!" });
   }
 });
 

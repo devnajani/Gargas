@@ -7,17 +7,17 @@ import 'react-toastify/dist/ReactToastify.css';
 const ExamLogin = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
-  const [forgotPasswordModal, setForgotPasswordModal] = useState(false);
+  const [forgotPasswordModal, setForgotPasswordModal] = useState(false); 
   const [forgotEmail, setForgotEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [isEmailValid, setIsEmailValid] = useState(false);
-  const [forgotOtp, setForgotOtp] = useState(['', '', '', '', '', '']);
+  const [forgotOtp, setForgotOtp] = useState('');
   const [isForgotOtpModalOpen, setIsForgotOtpModalOpen] = useState(false);
   const [forgotOtpTimer, setForgotOtpTimer] = useState(120);
   const [forgotOtpValidationMessage, setForgotOtpValidationMessage] = useState("");
   const [isForgotOtpValid, setIsForgotOtpValid] = useState(false);
   const [forgotOtpSent, setForgotOtpSent] = useState(false);
-  const forgotOtpRefs = useRef([]);
+  const forgotOtpRef = useRef(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -135,11 +135,12 @@ const ExamLogin = () => {
       if (response.ok) {
         setIsForgotOtpModalOpen(true);
         setForgotOtpTimer(120);
-        setForgotOtp(['', '', '', '', '', '']);
+        setForgotOtp('');
         setForgotOtpValidationMessage('');
         setIsForgotOtpValid(false);
         setForgotOtpSent(true);
         toast.success("OTP sent successfully to your email.");
+        forgotOtpRef.current?.focus();
       } else {
         toast.error("Error: " + (data.message || "Failed to send OTP"));
       }
@@ -149,21 +150,27 @@ const ExamLogin = () => {
     }
   };
 
-  const handleForgotOtpChange = (value, index) => {
-    if (!/^\d?$/.test(value)) return;
-    const newOtp = [...forgotOtp];
-    newOtp[index] = value;
-    setForgotOtp(newOtp);
-    if (value && index < 5) {
-      forgotOtpRefs.current[index + 1]?.focus();
-    }
-    if (!value && index > 0) {
-      forgotOtpRefs.current[index - 1]?.focus();
+  const handleForgotOtpChange = (e) => {
+    const value = e.target.value;
+    if (/^\d{0,6}$/.test(value)) {
+      setForgotOtp(value);
+      setForgotOtpValidationMessage('');
     }
   };
 
+  const handleForgotOtpPaste = (e) => {
+    const pasted = e.clipboardData.getData("text").trim();
+    if (/^\d{6}$/.test(pasted)) {
+      setForgotOtp(pasted);
+      setForgotOtpValidationMessage('');
+    } else {
+      toast.error("Please paste a valid 6-digit OTP.");
+    }
+    e.preventDefault();
+  };
+
   const handleVerifyForgotOtp = async () => {
-    const enteredOtp = forgotOtp.join('');
+    const enteredOtp = forgotOtp;
     if (enteredOtp.length !== 6) {
       setForgotOtpValidationMessage('Please enter a valid 6-digit OTP.');
       setIsForgotOtpValid(false);
@@ -199,7 +206,7 @@ const ExamLogin = () => {
   };
 
   const handleResendForgotOtp = async () => {
-    setForgotOtp(['', '', '', '', '', '']);
+    setForgotOtp('');
     setForgotOtpTimer(120);
     setForgotOtpValidationMessage('');
     setIsForgotOtpValid(false);
@@ -208,9 +215,8 @@ const ExamLogin = () => {
 
   const closeForgotOtpModal = () => {
     setIsForgotOtpModalOpen(false);
-    setForgotOtp(['', '', '', '', '', '']);
+    setForgotOtp('');
     setForgotOtpValidationMessage('');
-    // Do NOT reset isForgotOtpValid here!
   };
 
   const formatForgotOtpTimer = () => {
@@ -356,7 +362,7 @@ const ExamLogin = () => {
                   setNewPassword("");
                   setIsEmailValid(false);
                   setIsForgotOtpModalOpen(false);
-                  setForgotOtp(['', '', '', '', '', '']);
+                  setForgotOtp('');
                   setForgotOtpValidationMessage('');
                   setIsForgotOtpValid(false);
                 }}
@@ -372,18 +378,17 @@ const ExamLogin = () => {
               <div className="bg-white p-6 rounded-lg shadow-lg w-96 space-y-4">
                 <h3 className="text-xl font-bold text-center">Enter OTP</h3>
                 <p className="text-center text-gray-600">Please enter the 6-digit OTP sent to your email.</p>
-                <div className="flex justify-center space-x-2">
-                  {forgotOtp.map((digit, index) => (
-                    <input
-                      key={index}
-                      type="text"
-                      maxLength="1"
-                      value={digit}
-                      onChange={(e) => handleForgotOtpChange(e.target.value, index)}
-                      ref={el => forgotOtpRefs.current[index] = el}
-                      className="w-10 h-10 text-center border border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 text-lg"
-                    />
-                  ))}
+                <div className="flex justify-center">
+                  <input
+                    type="text"
+                    value={forgotOtp}
+                    onChange={handleForgotOtpChange}
+                    onPaste={handleForgotOtpPaste}
+                    maxLength={6}
+                    placeholder="Type 6-digit OTP"
+                    className="w-48 px-4 py-2 text-center border border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 text-lg tracking-widest"
+                    ref={forgotOtpRef}
+                  />
                 </div>
                 {forgotOtpValidationMessage && (
                   <p className={`text-center text-lg ${isForgotOtpValid ? "text-green-600" : "text-red-600"}`}>

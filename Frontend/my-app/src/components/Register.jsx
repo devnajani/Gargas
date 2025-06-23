@@ -193,80 +193,87 @@
     //   }
     // };
     const handlePayment = async () => {
-      if (!formData.firstName || !formData.lastName || !formData.email || !formData.phoneNumber || !formData.password || !formData.ageGroup) {
-        toast.error("Please fill all details before payment.");
-        return;
-      }
+  if (
+    !formData.firstName ||
+    !formData.lastName ||
+    !formData.email ||
+    !formData.phoneNumber ||
+    !formData.password ||
+    !formData.ageGroup
+  ) {
+    toast.error("Please fill all details before payment.");
+    return;
+  }
 
-      if (!otpSent || !isOtpValid) {
-        toast.error("Please verify your email with OTP before payment.");
-        return;
-      }
+  if (!otpSent || !isOtpValid) {
+    toast.error("Please verify your email with OTP before payment.");
+    return;
+  }
 
-      try {
-        const response = await fetch("https://gargas-1.onrender.com/api/create-order", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ amount: 250 })  // Send amount to backend
-        });
+  try {
+    const response = await fetch("https://gargas-1.onrender.com/api/create-order", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ amount: 250 }),
+    });
 
-        const order = await response.json();
+    const order = await response.json();
 
-        const options = {
-          key: "rzp_live_IRl0nV0JgZFIVC", // Replace with your Razorpay Live Key
-          amount: order.amount,
-          currency: "INR",
-          name: "Ramayan Championship",
-          description: "Exam Registration Fee",
-          order_id: order.id,
-          prefill: {
-            name: `${formData.firstName} ${formData.lastName}`,
-            email: formData.email,
-            contact: formData.phoneNumber,
-          },
-          handler: async function (response) {
-            try {
-              const registerRes = await fetch("https://gargas-1.onrender.com/api/register", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ ...formData, paymentId: response.razorpay_payment_id }),
-              });
+    const options = {
+      key: "rzp_live_IRl0nV0JgZFIVC", // Your Razorpay Live Key
+      amount: order.amount,
+      currency: "INR",
+      name: "Ramayan Championship",
+      description: "Exam Registration Fee",
+      order_id: order.id,
+      prefill: {
+        name: `${formData.firstName} ${formData.lastName}`,
+        email: formData.email,
+        contact: formData.phoneNumber,
+      },
+      handler: async function (response) {
+        try {
+          const registerRes = await fetch("https://gargas-1.onrender.com/api/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ ...formData, paymentId: response.razorpay_payment_id }),
+          });
 
-              const data = await registerRes.json();
+          const data = await registerRes.json();
 
-              if (registerRes.ok) {
-                toast.success("Registration Successful!");
-                setFormData({
-                  firstName: "",
-                  lastName: "",
-                  email: "",
-                  password: "",
-                  ageGroup: "",
-                  phoneNumber: "",
-                });
-                setOtpSent(false);
-                setIsOtpValid(false);
-              } else {
-                toast.error("Registration failed: " + data.message);
-              }
-            } catch (err) {
-              toast.error("Error saving registration after payment.");
-            }
-          },
-          modal: {
-            ondismiss: function () {
-              toast.warn("Payment cancelled.");
-            }
+          if (registerRes.ok) {
+            toast.success("Registration Successful!");
+            setFormData({
+              firstName: "",
+              lastName: "",
+              email: "",
+              password: "",
+              ageGroup: "",
+              phoneNumber: "",
+            });
+            setOtpSent(false);
+            setIsOtpValid(false);
+          } else {
+            toast.error("Registration failed: " + data.message);
           }
-        };
-
-        const rzp = new window.Razorpay(options);
-        rzp.open();
-      } catch (err) {
-        console.error(err);
-        toast.error("Failed to initiate payment.");
-      }
+        } catch (err) {
+          toast.error("Error saving registration after payment.");
+        }
+      },
+      modal: {
+        ondismiss: function () {
+          toast.warn("Payment cancelled.");
+        },
+      },
     };
+
+    const rzp = new window.Razorpay(options);
+    rzp.open();
+  } catch (err) {
+    console.error(err);
+    toast.error("Failed to initiate payment.");
+  }
+};
 
     // const handlePayment = async () => {
     //   if (!formData.firstName || !formData.lastName || !formData.email || !formData.phoneNumber || !formData.password || !formData.ageGroup) {

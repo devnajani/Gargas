@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 const nodemailer = require("nodemailer");
 const Razorpay = require("razorpay");
 const crypto = require("crypto");
+const path = require('path');
 
 dotenv.config(); // Load environment variables from .env
 
@@ -366,6 +367,14 @@ app.post("/api/verify-payment", (req, res) => {
     res.status(400).json({ success: false, message: "Invalid signature. Possible tampering!" });
   }
 });
+// Serve static files from React frontend
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+// Catch-all handler: for any request that doesn't match above, send back React's index.html
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
+
 
 // ✅ ✅ ✅ Add Keep-Alive /ping Route (NEW)
 app.get("/ping", (req, res) => {

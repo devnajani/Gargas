@@ -290,7 +290,7 @@ app.post("/api/create-order", async (req, res) => {
   });
 
   const options = {
-    amount: 25000,
+    amount: 250,
     currency: "INR",
     receipt: "receipt_" + Date.now(),
   };
@@ -369,8 +369,9 @@ app.post("/api/verify-payment", (req, res) => {
 
 // ✅ ✅ ✅ Add Keep-Alive /ping Route (NEW)
 app.get("/ping", (req, res) => {
-  res.send("OK");
+  res.status(200).send("pong");
 });
+
 
 // ✅ Start Server
 app.listen(PORT, () =>

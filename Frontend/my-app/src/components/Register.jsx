@@ -331,7 +331,8 @@
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/40"></div>
         <div className="relative z-10 flex items-center justify-center min-h-screen">
           <div className="bg-gradient-to-b from-[#F5E6C6] to-[#EAD7A4] p-6 rounded-lg shadow-lg space-y-4 w-full max-w-4xl mx-4">
-            <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">Register for Exam</h2>
+<h2 className="text-3xl font-bold text-center mb-2 text-gray-800">Register for Ramayana Exam</h2>
+<p className="text-center text-sm text-gray-600 mb-6">If any kind of help required, please call 9408624869</p>
             <form onSubmit={handlePayment} className="space-y-4">
 
               {/* Name Inputs */}

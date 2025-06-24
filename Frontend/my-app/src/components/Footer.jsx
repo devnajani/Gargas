@@ -52,7 +52,7 @@ const Footer = () => {
           <p className="text-base sm:text-lg font-medium text-gray-800">Support & Follow Us</p>
           <div className="flex space-x-4">
             <a
-              href="https://www.facebook.com/gargas/"
+              href="https://www.facebook.com/gargas_official/"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 rounded-full border border-gray-600 ransition-all flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12"

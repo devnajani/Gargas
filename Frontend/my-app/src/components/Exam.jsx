@@ -7,6 +7,9 @@ const Exam = () => {
   const handleStartExam = () => {
     navigate('/examlogin');
   };
+  const handlenoexam = () => {
+alert("📣 Coming Soon! Get ready for Sanatan Dham's biggest championship — stay tuned and take the challenge soon!");
+  }
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-b from-gray-900 to-gray-800">
@@ -25,7 +28,8 @@ const Exam = () => {
         <div className="mt-6">
           <button
             className="bg-yellow-500 text-black px-6 py-2 rounded-full text-lg font-semibold shadow-md hover:bg-yellow-400 transition duration-300"
-            onClick={handleStartExam}
+            // onClick={handleStartExam}
+            onClick={handlenoexam}
           >
             Start Exam
           </button>

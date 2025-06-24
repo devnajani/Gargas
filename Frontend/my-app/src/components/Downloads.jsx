@@ -7,12 +7,13 @@ const Downloads = () => {
         <h2 className="text-3xl font-bold mb-4 tracking-wide">Download</h2>
         <p className="text-lg mb-6 text-gray-700">Download the sample paper below:</p>
         <a
-          href="/sample-paper.pdf" // Replace with your actual file path
+          href="/Ramayan_mcq.pdf"
           download="Sample_Paper.pdf"
           className="bg-yellow-500 text-black px-6 py-2 rounded-full text-lg font-semibold shadow-md hover:bg-yellow-400 transition duration-300"
         >
           📥 Download Sample Paper
         </a>
+
       </div>
     </div>
   );

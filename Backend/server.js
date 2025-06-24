@@ -6,8 +6,7 @@ const nodemailer = require("nodemailer");
 const Razorpay = require("razorpay");
 const crypto = require("crypto");
 const path = require('path');
-
-dotenv.config(); // Load environment variables from .env
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -291,7 +290,7 @@ app.post("/api/create-order", async (req, res) => {
   });
 
   const options = {
-    amount: 250,
+    amount: 25000,
     currency: "INR",
     receipt: "receipt_" + Date.now(),
   };

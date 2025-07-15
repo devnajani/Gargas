@@ -102,26 +102,33 @@ const Register = () => {
         <div className="bg-gradient-to-b from-[#F5E6C6] to-[#EAD7A4] p-6 rounded-lg shadow-lg space-y-4 w-full max-w-4xl mx-4">
           <h2 className="text-3xl font-bold text-center mb-2 text-gray-800">Register for Ramayana Exam</h2>
           <p className="text-center text-sm text-gray-600 mb-6">If any kind of help required, please call 9408624869</p>
+
           <form className="space-y-4">
+
+            {/* Name Inputs */}
             <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
-              {['First Name', 'Last Name'].map((label) => (
-                <div key={label} className="relative flex-1">
+              {[
+                { label: 'First Name', name: 'firstName' },
+                { label: 'Last Name', name: 'lastName' },
+              ].map(({ label, name }) => (
+                <div key={name} className="relative flex-1">
                   <input
                     type="text"
-                    name={label.replace(" ", "").toLowerCase()}
-                    value={formData[label.replace(" ", "").toLowerCase()]}
+                    name={name}
+                    value={formData[name]}
                     onChange={handleChange}
                     placeholder={`Please enter ${label.toLowerCase()}`}
                     className="w-full px-4 py-3 border border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 text-lg"
                     required
                   />
-                  <label className="absolute left-2.5 top-3.5 text-gray-900 text-lg transition-all duration-200 transform -translate-y-6 scale-75 origin-top-left bg-white px-1 rounded-full">
+                  <label htmlFor={name} className="absolute left-2.5 top-3.5 text-gray-900 text-lg transition-all duration-200 ease-in-out transform -translate-y-6 scale-75 origin-top-left bg-white px-1 rounded-full">
                     {label}
                   </label>
                 </div>
               ))}
             </div>
 
+            {/* Email */}
             <div className="relative flex-1">
               <input
                 type="email"
@@ -132,11 +139,12 @@ const Register = () => {
                 className="w-full px-4 py-3 border border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 text-lg"
                 required
               />
-              <label className="absolute left-2.5 top-3.5 text-gray-900 text-lg transition-all duration-200 transform -translate-y-6 scale-75 origin-top-left bg-white px-1 rounded-full">
+              <label htmlFor="email" className="absolute left-2.5 top-3.5 text-gray-900 text-lg transition-all duration-200 ease-in-out transform -translate-y-6 scale-75 origin-top-left bg-white px-1 rounded-full">
                 Email
               </label>
             </div>
 
+            {/* Password */}
             <div className="relative flex-1">
               <input
                 type={showPassword ? "text" : "password"}
@@ -147,7 +155,7 @@ const Register = () => {
                 className="w-full px-4 py-3 border border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 text-lg"
                 required
               />
-              <label className="absolute left-2.5 top-3.5 text-gray-900 text-lg transition-all duration-200 transform -translate-y-6 scale-75 origin-top-left bg-white px-1 rounded-full">
+              <label htmlFor="password" className="absolute left-2.5 top-3.5 text-gray-900 text-lg transition-all duration-200 ease-in-out transform -translate-y-6 scale-75 origin-top-left bg-white px-1 rounded-full">
                 Password
               </label>
               <div className="absolute right-3 top-3 cursor-pointer text-gray-600" onClick={() => setShowPassword(!showPassword)}>
@@ -155,6 +163,7 @@ const Register = () => {
               </div>
             </div>
 
+            {/* Phone Number */}
             <div className="relative flex-1">
               <input
                 type="text"
@@ -169,11 +178,12 @@ const Register = () => {
                 maxLength="10"
                 required
               />
-              <label className="absolute left-2.5 top-3.5 text-gray-900 text-lg transition-all duration-200 transform -translate-y-6 scale-75 origin-top-left bg-white px-1 rounded-full">
+              <label htmlFor="phoneNumber" className="absolute left-2.5 top-3.5 text-gray-900 text-lg transition-all duration-200 ease-in-out transform -translate-y-6 scale-75 origin-top-left bg-white px-1 rounded-full">
                 Phone Number
               </label>
             </div>
 
+            {/* Age Group */}
             <div className="flex flex-1 items-center space-x-4">
               <label className="text-gray-800 font-semibold text-lg">Age Group:</label>
               {['6-16', '16+'].map((group) => (
@@ -192,6 +202,7 @@ const Register = () => {
               ))}
             </div>
 
+            {/* Payment Button */}
             <button
               type="button"
               onClick={handlePayment}
@@ -216,6 +227,7 @@ const Register = () => {
             >
               Go to Payment
             </button>
+
           </form>
         </div>
       </div>

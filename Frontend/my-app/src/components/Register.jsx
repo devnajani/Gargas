@@ -62,6 +62,7 @@ const Register = () => {
             });
 
             const data = await registerRes.json();
+            console.log("Register API Response:", data);
 
             if (registerRes.ok) {
               toast.success("Registration Successful!");
@@ -74,9 +75,10 @@ const Register = () => {
                 phoneNumber: '',
               });
             } else {
-              toast.error("Registration failed: " + data.message);
+              toast.error("Registration failed: " + (data.message || data.error || "Unknown error"));
             }
           } catch (err) {
+            console.error("Error saving registration after payment:", err);
             toast.error("Error saving registration after payment.");
           }
         },
@@ -90,7 +92,7 @@ const Register = () => {
       const rzp = new window.Razorpay(options);
       rzp.open();
     } catch (err) {
-      console.error(err);
+      console.error("Failed to initiate payment:", err);
       toast.error("Failed to initiate payment.");
     }
   };
@@ -104,13 +106,8 @@ const Register = () => {
           <p className="text-center text-sm text-gray-600 mb-6">If any kind of help required, please call 9408624869</p>
 
           <form className="space-y-4">
-
-            {/* Name Inputs */}
             <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
-              {[
-                { label: 'First Name', name: 'firstName' },
-                { label: 'Last Name', name: 'lastName' },
-              ].map(({ label, name }) => (
+              {[{ label: 'First Name', name: 'firstName' }, { label: 'Last Name', name: 'lastName' }].map(({ label, name }) => (
                 <div key={name} className="relative flex-1">
                   <input
                     type="text"
@@ -128,7 +125,6 @@ const Register = () => {
               ))}
             </div>
 
-            {/* Email */}
             <div className="relative flex-1">
               <input
                 type="email"
@@ -144,7 +140,6 @@ const Register = () => {
               </label>
             </div>
 
-            {/* Password */}
             <div className="relative flex-1">
               <input
                 type={showPassword ? "text" : "password"}
@@ -163,7 +158,6 @@ const Register = () => {
               </div>
             </div>
 
-            {/* Phone Number */}
             <div className="relative flex-1">
               <input
                 type="text"
@@ -183,7 +177,6 @@ const Register = () => {
               </label>
             </div>
 
-            {/* Age Group */}
             <div className="flex flex-1 items-center space-x-4">
               <label className="text-gray-800 font-semibold text-lg">Age Group:</label>
               {['6-16', '16+'].map((group) => (
@@ -202,7 +195,6 @@ const Register = () => {
               ))}
             </div>
 
-            {/* Payment Button */}
             <button
               type="button"
               onClick={handlePayment}
@@ -227,7 +219,6 @@ const Register = () => {
             >
               Go to Payment
             </button>
-
           </form>
         </div>
       </div>

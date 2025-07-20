@@ -138,6 +138,8 @@ const Register = () => {
               <label htmlFor="email" className="absolute left-2.5 top-3.5 text-gray-900 text-lg transition-all duration-200 ease-in-out transform -translate-y-6 scale-75 origin-top-left bg-white px-1 rounded-full">
                 Email
               </label>
+                <p className="text-sm text-gray-600 mt-1 pl-2">Please enter a valid email address.</p>
+
             </div>
 
             <div className="relative flex-1">
@@ -175,6 +177,8 @@ const Register = () => {
               <label htmlFor="phoneNumber" className="absolute left-2.5 top-3.5 text-gray-900 text-lg transition-all duration-200 ease-in-out transform -translate-y-6 scale-75 origin-top-left bg-white px-1 rounded-full">
                 Phone Number
               </label>
+               <p className="text-sm text-gray-600 mt-1 pl-2">Please enter your WhatsApp number.</p>
+
             </div>
 
             <div className="flex flex-1 items-center space-x-4">

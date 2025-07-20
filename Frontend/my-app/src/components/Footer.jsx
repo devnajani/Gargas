@@ -33,9 +33,10 @@ const Footer = () => {
         <div className="flex flex-col items-center sm:items-center space-y-4 text-gray-800">
           <p className="flex items-start sm:items-center space-x-3 text-sm sm:text-base">
             <FaMapMarkerAlt className="text-lg text-red-600 mt-1 sm:mt-0" />
-            <span className="font-medium text-left">
-              SHOP NO 4, Life plus, JAY SOCIETY COMPLEX, NEAR, Gandhi Baug Rd, Mani Nagar, Amreli, Gujarat 365601
-            </span>
+           <span className="font-medium text-left">
+  SHOP NO 4, LIFE PLUS, JAY SOCIETY COMPLEX, NEAR, GANDHI BAUG RD, MANI NAGAR, AMRELI, GUJARAT 365601
+</span>
+
           </p>
           <p className="flex items-center space-x-3 text-sm sm:text-base">
             <FaPhoneAlt className="text-lg text-green-600" />

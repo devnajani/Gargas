@@ -36,7 +36,7 @@ const Register = () => {
       const response = await fetch("https://gargas-1.onrender.com/api/create-order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ amount: 250 }),
+        body: JSON.stringify({ amount: 2 }),
       });
 
       const order = await response.json();

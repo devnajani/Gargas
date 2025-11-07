@@ -293,7 +293,7 @@ const ExamLogin = () => {
           </button>
 
           <div className="mt-4 text-center">
-            <a
+            {/* <a
               href="#"
               onClick={(e) => {
                 e.preventDefault();
@@ -302,7 +302,7 @@ const ExamLogin = () => {
               className="text-blue-500 text-sm hover:underline cursor-pointer"
             >
               Forgot Password
-            </a>
+            </a> */}
           </div>
         </form>
       </div>

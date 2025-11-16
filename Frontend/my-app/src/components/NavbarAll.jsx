@@ -47,6 +47,17 @@ const NavbarAll = () => {
           </button>
 
           {/* Desktop Navigation Links */}
+          <ul className={`hidden md:flex md:space-x-8 text-xl font-bold text-white transition-all duration-300 
+            ${scrolled ? "mx-auto" : ""}`}>
+            {["Home", "About", "Results", "Exam", "Downloads", "Contact"].map((item, index) => (
+              <li key={index} className="hover:text-yellow-300 transition duration-300">
+                <Link to={`/${item.toLowerCase()}`}>{item}</Link>
+              </li>
+              
+            ))}
+          </ul>
+
+          {/* with register page  */}
           {/* <ul className={`hidden md:flex md:space-x-8 text-xl font-bold text-white transition-all duration-300 
             ${scrolled ? "mx-auto" : ""}`}>
             {["Home", "About", "Results", "Exam", "Downloads", "Contact", "Register"].map((item, index) => (

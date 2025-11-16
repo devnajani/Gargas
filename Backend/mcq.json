@@ -1,103 +1,1002 @@
 [
-  { "question": "What is 2 + 2?", "options": ["3", "4", "5", "6"], "correctAnswer": "4" },
-  { "question": "What is the capital of France?", "options": ["London", "Paris", "Berlin", "Rome"], "correctAnswer": "Paris" },
-  { "question": "Which planet is known as the Red Planet?", "options": ["Earth", "Mars", "Jupiter", "Venus"], "correctAnswer": "Mars" },
-  { "question": "Who wrote 'Hamlet'?", "options": ["Shakespeare", "Hemingway", "Tolkien", "Dickens"], "correctAnswer": "Shakespeare" },
-  { "question": "What is H2O commonly known as?", "options": ["Oxygen", "Water", "Hydrogen", "Carbon Dioxide"], "correctAnswer": "Water" },
-  { "question": "What is the capital of Canada?", "options": ["Toronto", "Vancouver", "Ottawa", "Montreal"], "correctAnswer": "Ottawa" },
-  { "question": "What is the square root of 64?", "options": ["6", "7", "8", "9"], "correctAnswer": "8" },
-  { "question": "Which is the smallest continent?", "options": ["Asia", "Europe", "Antarctica", "Australia"], "correctAnswer": "Australia" },
-  { "question": "What is the chemical symbol for gold?", "options": ["Au", "Ag", "Fe", "Pb"], "correctAnswer": "Au" },
-  { "question": "Which gas do plants absorb from the atmosphere?", "options": ["Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"], "correctAnswer": "Carbon Dioxide" },
-  { "question": "How many states are there in the United States?", "options": ["48", "49", "50", "51"], "correctAnswer": "50" },
-  { "question": "What is the boiling point of water in Celsius?", "options": ["90°C", "95°C", "100°C", "110°C"], "correctAnswer": "100°C" },
-  { "question": "What is the national sport of Japan?", "options": ["Baseball", "Sumo Wrestling", "Soccer", "Judo"], "correctAnswer": "Sumo Wrestling" },
-  { "question": "Which ocean is the largest?", "options": ["Atlantic", "Indian", "Arctic", "Pacific"], "correctAnswer": "Pacific" },
-  { "question": "Who developed the theory of relativity?", "options": ["Isaac Newton", "Albert Einstein", "Galileo Galilei", "Nikola Tesla"], "correctAnswer": "Albert Einstein" },
-  { "question": "What is the main ingredient in guacamole?", "options": ["Tomato", "Avocado", "Onion", "Lettuce"], "correctAnswer": "Avocado" },
-  { "question": "How many legs does a spider have?", "options": ["6", "8", "10", "12"], "correctAnswer": "8" },
-  { "question": "What is the capital of Germany?", "options": ["Berlin", "Munich", "Frankfurt", "Hamburg"], "correctAnswer": "Berlin" },
-  { "question": "Which is the hardest natural substance on Earth?", "options": ["Gold", "Iron", "Diamond", "Platinum"], "correctAnswer": "Diamond" },
-  { "question": "What does the 'HTTP' stand for in a website address?", "options": ["Hyper Text Transfer Protocol", "High Tech Transfer Protocol", "Hyperlink Transfer Text Protocol", "Hyper Text Translation Process"], "correctAnswer": "Hyper Text Transfer Protocol" },
-  { "question": "Who painted the Mona Lisa?", "options": ["Vincent van Gogh", "Leonardo da Vinci", "Pablo Picasso", "Claude Monet"], "correctAnswer": "Leonardo da Vinci" },
-  { "question": "Which country invented paper?", "options": ["India", "China", "Egypt", "Greece"], "correctAnswer": "China" },
-  { "question": "What is the chemical formula of methane?", "options": ["CH4", "CO2", "H2O", "O2"], "correctAnswer": "CH4" },
-  { "question": "Which bird is known for its ability to mimic sounds?", "options": ["Parrot", "Crow", "Sparrow", "Pigeon"], "correctAnswer": "Parrot" },
-  { "question": "Which gas do humans breathe in for survival?", "options": ["Oxygen", "Nitrogen", "Carbon Dioxide", "Hydrogen"], "correctAnswer": "Oxygen" },
-  { "question": "What is the national currency of Japan?", "options": ["Dollar", "Euro", "Yen", "Won"], "correctAnswer": "Yen" },
-  { "question": "How many sides does a hexagon have?", "options": ["4", "5", "6", "8"], "correctAnswer": "6" },
-  { "question": "Which continent is known as the 'Land Down Under'?", "options": ["South America", "Africa", "Australia", "Antarctica"], "correctAnswer": "Australia" },
-  { "question": "Which part of the plant conducts photosynthesis?", "options": ["Roots", "Stem", "Leaves", "Flowers"], "correctAnswer": "Leaves" },
-  { "question": "Which organ pumps blood throughout the human body?", "options": ["Lungs", "Heart", "Brain", "Liver"], "correctAnswer": "Heart" },
-  { "question": "Which is the largest mammal?", "options": ["Elephant", "Blue Whale", "Giraffe", "Hippo"], "correctAnswer": "Blue Whale" },
-  { "question": "Which vitamin is produced by sunlight?", "options": ["Vitamin A", "Vitamin C", "Vitamin D", "Vitamin E"], "correctAnswer": "Vitamin D" },
-  { "question": "What is the largest desert in the world?", "options": ["Sahara", "Antarctic", "Gobi", "Kalahari"], "correctAnswer": "Antarctic" },
-  { "question": "Which gas is most abundant in Earth's atmosphere?", "options": ["Oxygen", "Carbon Dioxide", "Nitrogen", "Helium"], "correctAnswer": "Nitrogen" },
-  { "question": "How many bones are there in an adult human body?", "options": ["206", "208", "210", "212"], "correctAnswer": "206" },
-  { "question": "What is the powerhouse of the cell?", "options": ["Nucleus", "Ribosome", "Mitochondria", "Golgi body"], "correctAnswer": "Mitochondria" },
-  { "question": "Who discovered penicillin?", "options": ["Marie Curie", "Alexander Fleming", "Isaac Newton", "Albert Einstein"], "correctAnswer": "Alexander Fleming" },
-  { "question": "Which is the longest river in the world?", "options": ["Amazon", "Nile", "Yangtze", "Mississippi"], "correctAnswer": "Nile" },
-  { "question": "Which country is famous for the Great Wall?", "options": ["India", "China", "Japan", "Russia"], "correctAnswer": "China" },
-  { "question": "Which planet has the most moons?", "options": ["Jupiter", "Saturn", "Mars", "Earth"], "correctAnswer": "Saturn" },
-  { "question": "Which element has the chemical symbol 'O'?", "options": ["Oxygen", "Osmium", "Gold", "Silver"], "correctAnswer": "Oxygen" },
-  { "question": "Who was the first person to walk on the moon?", "options": ["Buzz Aldrin", "Yuri Gagarin", "Neil Armstrong", "Michael Collins"], "correctAnswer": "Neil Armstrong" },
-  { "question": "What is the capital of Italy?", "options": ["Paris", "Madrid", "Rome", "Lisbon"], "correctAnswer": "Rome" },
-  { "question": "Which country is known as the Land of the Rising Sun?", "options": ["China", "India", "Japan", "South Korea"], "correctAnswer": "Japan" },
-  { "question": "How many planets are in our Solar System?", "options": ["7", "8", "9", "10"], "correctAnswer": "8" },
-  { "question": "Which organ is responsible for filtering blood in the human body?", "options": ["Lungs", "Heart", "Kidney", "Liver"], "correctAnswer": "Kidney" },
-  { "question": "Which animal is known as the 'King of the Jungle'?", "options": ["Tiger", "Elephant", "Lion", "Bear"], "correctAnswer": "Lion" },
-  { "question": "Which is the longest mountain range in the world?", "options": ["Himalayas", "Rocky Mountains", "Andes", "Alps"], "correctAnswer": "Andes" },
-    { "question": "Which country gifted the Statue of Liberty to the USA?", "options": ["France", "Italy", "Germany", "UK"], "correctAnswer": "France" },
-    { "question": "What is the chemical symbol for silver?", "options": ["Si", "Ag", "Au", "Pb"], "correctAnswer": "Ag" },
-    { "question": "Which ocean is the deepest?", "options": ["Atlantic", "Indian", "Arctic", "Pacific"], "correctAnswer": "Pacific" },
-    { "question": "Who developed the first successful polio vaccine?", "options": ["Marie Curie", "Louis Pasteur", "Jonas Salk", "Edward Jenner"], "correctAnswer": "Jonas Salk" },
-    { "question": "What is the capital of Brazil?", "options": ["São Paulo", "Buenos Aires", "Rio de Janeiro", "Brasília"], "correctAnswer": "Brasília" },
-    { "question": "Which is the most widely spoken language in the world?", "options": ["English", "Mandarin Chinese", "Spanish", "Hindi"], "correctAnswer": "Mandarin Chinese" },
-    { "question": "How many teeth does an adult human have?", "options": ["30", "32", "34", "28"], "correctAnswer": "32" },
-    { "question": "What is the hardest known natural material?", "options": ["Iron", "Diamond", "Gold", "Platinum"], "correctAnswer": "Diamond" },
-    { "question": "Which gas is used in balloons to make them float?", "options": ["Oxygen", "Helium", "Nitrogen", "Hydrogen"], "correctAnswer": "Helium" },
-    { "question": "Which continent has the most countries?", "options": ["Asia", "Europe", "Africa", "South America"], "correctAnswer": "Africa" },
-    { "question": "Who is the author of '1984'?", "options": ["Aldous Huxley", "George Orwell", "F. Scott Fitzgerald", "J.K. Rowling"], "correctAnswer": "George Orwell" },
-    { "question": "What is the SI unit of force?", "options": ["Watt", "Newton", "Joule", "Pascal"], "correctAnswer": "Newton" },
-    { "question": "Which organ in the human body produces insulin?", "options": ["Liver", "Pancreas", "Kidney", "Heart"], "correctAnswer": "Pancreas" },
-    { "question": "How many stripes are there on the American flag?", "options": ["10", "12", "13", "15"], "correctAnswer": "13" },
-    { "question": "Which is the smallest bone in the human body?", "options": ["Femur", "Stapes", "Tibia", "Humerus"], "correctAnswer": "Stapes" },
-    { "question": "Which element is a liquid at room temperature?", "options": ["Iron", "Mercury", "Lead", "Copper"], "correctAnswer": "Mercury" },
-    { "question": "Who invented the telephone?", "options": ["Nikola Tesla", "Alexander Graham Bell", "Thomas Edison", "Benjamin Franklin"], "correctAnswer": "Alexander Graham Bell" },
-    { "question": "Which animal can regenerate its limbs?", "options": ["Frog", "Lizard", "Starfish", "Snake"], "correctAnswer": "Starfish" },
-    { "question": "What is the capital of Russia?", "options": ["Saint Petersburg", "Moscow", "Kiev", "Sochi"], "correctAnswer": "Moscow" },
-    { "question": "Which is the only metal that is liquid at room temperature?", "options": ["Mercury", "Lead", "Iron", "Aluminum"], "correctAnswer": "Mercury" },
-    { "question": "Which planet is the largest in our Solar System?", "options": ["Mars", "Jupiter", "Earth", "Saturn"], "correctAnswer": "Jupiter" },
-    { "question": "What is the capital of South Korea?", "options": ["Beijing", "Tokyo", "Seoul", "Bangkok"], "correctAnswer": "Seoul" },
-    { "question": "What is the fastest land animal?", "options": ["Cheetah", "Lion", "Horse", "Kangaroo"], "correctAnswer": "Cheetah" },
-    { "question": "Which is the tallest building in the world?", "options": ["Empire State Building", "Burj Khalifa", "Shanghai Tower", "One World Trade Center"], "correctAnswer": "Burj Khalifa" },
-    { "question": "What is the capital of Italy?", "options": ["Madrid", "Paris", "Rome", "Athens"], "correctAnswer": "Rome" },
-    { "question": "Who painted 'The Starry Night'?", "options": ["Pablo Picasso", "Leonardo da Vinci", "Vincent van Gogh", "Claude Monet"], "correctAnswer": "Vincent van Gogh" },
-    { "question": "What is the speed of light?", "options": ["300,000 km/s", "150,000 km/s", "500,000 km/s", "100,000 km/s"], "correctAnswer": "300,000 km/s" },
-    { "question": "Which planet has the most moons?", "options": ["Jupiter", "Saturn", "Mars", "Earth"], "correctAnswer": "Saturn" },
-    { "question": "Who discovered gravity?", "options": ["Albert Einstein", "Isaac Newton", "Galileo Galilei", "Nikola Tesla"], "correctAnswer": "Isaac Newton" },
-    { "question": "What is the national flower of Japan?", "options": ["Rose", "Lily", "Cherry Blossom", "Lotus"], "correctAnswer": "Cherry Blossom" },
-    { "question": "Which gas is the most abundant in Earth's atmosphere?", "options": ["Oxygen", "Carbon Dioxide", "Nitrogen", "Helium"], "correctAnswer": "Nitrogen" },
-    { "question": "How many players are on a standard soccer team?", "options": ["9", "10", "11", "12"], "correctAnswer": "11" },
-    { "question": "Which country is known as the Land of the Rising Sun?", "options": ["China", "Japan", "South Korea", "Thailand"], "correctAnswer": "Japan" },
-    { "question": "Which blood type is the universal donor?", "options": ["A", "B", "AB", "O"], "correctAnswer": "O" },
-    { "question": "What is the name of the fairy in Peter Pan?", "options": ["Tinker Bell", "Wendy", "Ariel", "Elsa"], "correctAnswer": "Tinker Bell" },
-    { "question": "Which is the longest river in the world?", "options": ["Amazon", "Nile", "Yangtze", "Mississippi"], "correctAnswer": "Nile" },
-    { "question": "Which element is necessary for breathing?", "options": ["Oxygen", "Carbon", "Hydrogen", "Nitrogen"], "correctAnswer": "Oxygen" },
-    { "question": "Which is the closest star to Earth?", "options": ["Sirius", "Alpha Centauri", "Betelgeuse", "The Sun"], "correctAnswer": "The Sun" },
-    { "question": "What is the main ingredient in bread?", "options": ["Sugar", "Flour", "Salt", "Butter"], "correctAnswer": "Flour" },
-    { "question": "Which organ helps humans filter blood?", "options": ["Lungs", "Heart", "Kidney", "Liver"], "correctAnswer": "Kidney" },
-    { "question": "What is the hardest rock?", "options": ["Granite", "Marble", "Diamond", "Limestone"], "correctAnswer": "Diamond" },
-    { "question": "What is the main gas in a balloon?", "options": ["Hydrogen", "Helium", "Oxygen", "Carbon Dioxide"], "correctAnswer": "Helium" },
-    { "question": "Which sea creature has three hearts?", "options": ["Octopus", "Shark", "Dolphin", "Whale"], "correctAnswer": "Octopus" },
-    { "question": "Which is the only bird that can fly backward?", "options": ["Eagle", "Sparrow", "Hummingbird", "Pigeon"], "correctAnswer": "Hummingbird" },
-    { "question": "How many bones are there in the human body?", "options": ["200", "206", "208", "210"], "correctAnswer": "206" },
-    { "question": "Which is the national animal of the USA?", "options": ["Lion", "Eagle", "Bison", "Bear"], "correctAnswer": "Bald Eagle" },
-    { "question": "Which vitamin is known as the 'sunshine vitamin'?", "options": ["Vitamin A", "Vitamin B", "Vitamin C", "Vitamin D"], "correctAnswer": "Vitamin D" },
-    { "question": "What is the currency of the United Kingdom?", "options": ["Euro", "Pound Sterling", "Dollar", "Yen"], "correctAnswer": "Pound Sterling" },
-    { "question": "Which planet is known as the 'Morning Star'?", "options": ["Venus", "Mars", "Mercury", "Jupiter"], "correctAnswer": "Venus" },
-    { "question": "What is the largest organ in the human body?", "options": ["Heart", "Liver", "Skin", "Lungs"], "correctAnswer": "Skin" },
-    { "question": "Which element is represented by the symbol 'K'?", "options": ["Krypton", "Potassium", "Kerosene", "Kalium"], "correctAnswer": "Potassium" },
-    { "question": "How many continents are there on Earth?", "options": ["5", "6", "7", "8"], "correctAnswer": "7" }
+  {
+    "question": "According to the Valmiki Ramayana, in which division of the fourfold army was Ravana most proud?",
+    "options": [
+      "The demon infantry",
+      "The battle chariot corps",
+      "The corps of mighty warriors like Kumbhakarna",
+      "The aerial and magical forces"
+    ],
+    "correctAnswer": "The aerial and magical forces"
+  },
+  {
+    "question": "Who was Ravana's father?",
+    "options": [
+      "Vishvamitra",
+      "Sage Vishrava",
+      "Sage Agastya",
+      "Sage Vashishta"
+    ],
+    "correctAnswer": "Sage Vishrava"
+  },
+  {
+    "question": "In what form was Ravana disguised at the time of Sita's abduction?",
+    "options": [
+      "A beggar",
+      "A Brahmin",
+      "A deer",
+      "A prince"
+    ],
+    "correctAnswer": "A Brahmin"
+  },
+  {
+    "question": "Why did Lakshmana cut off Shurpanakha's nose?",
+    "options": [
+      "She came to kill Rama",
+      "She tried to attack Sita",
+      "She was forbidden to enter the forest",
+      "She harmed Hanuman"
+    ],
+    "correctAnswer": "She tried to attack Sita"
+  },
+  {
+    "question": "At which place did Jatayu oppose the abduction of Sita?",
+    "options": [
+      "Dandaka forest",
+      "Panchavati",
+      "Pampa lake",
+      "Kishkindha"
+    ],
+    "correctAnswer": "Panchavati"
+  },
+  {
+    "question": "During Rama’s exile, at which sage’s hermitage did they first stay?",
+    "options": [
+      "Sage Atri’s hermitage",
+      "Sage Gautama’s hermitage",
+      "Sage Bharadwaja’s hermitage",
+      "Sage Agastya’s hermitage"
+    ],
+    "correctAnswer": "Sage Bharadwaja’s hermitage"
+  },
+  {
+    "question": "On whose command did Hanuman enter Lanka?",
+    "options": [
+      "Sugriva",
+      "Jambavan",
+      "Angada",
+      "Nala and Nila"
+    ],
+    "correctAnswer": "Jambavan"
+  },
+  {
+    "question": "Who was mainly responsible for designing and planning the construction of the Rama Setu to reach Lanka?",
+    "options": [
+      "Angada",
+      "Jambavan",
+      "Nala",
+      "Nila"
+    ],
+    "correctAnswer": "Nala"
+  },
+  {
+    "question": "Which Vanara went as an envoy to Ravana’s court?",
+    "options": [
+      "Hanuman",
+      "Angada",
+      "Jambavan",
+      "Nila"
+    ],
+    "correctAnswer": "Angada"
+  },
+  {
+    "question": "According to the Ramayana, who was Ravana’s elder brother?",
+    "options": [
+      "Kumbhakarna",
+      "Ahiravana",
+      "Kumbha",
+      "Kubera"
+    ],
+    "correctAnswer": "Kubera"
+  },
+  {
+    "question": "Which demon did Vishvamitra first take Rama to slay?",
+    "options": [
+      "Tataka",
+      "Maricha",
+      "Subahu",
+      "Ahiravana"
+    ],
+    "correctAnswer": "Tataka"
+  },
+  {
+    "question": "Which demon took the form of a golden deer to deceive Sita?",
+    "options": [
+      "Maricha",
+      "Dushana",
+      "Khara",
+      "Tataka"
+    ],
+    "correctAnswer": "Maricha"
+  },
+  {
+    "question": "What is the main river associated with Ayodhya, the capital of Kosala?",
+    "options": [
+      "Ganga",
+      "Sarayu",
+      "Yamuna",
+      "Narmada"
+    ],
+    "correctAnswer": "Sarayu"
+  },
+  {
+    "question": "After Ravana’s death, who was made the king of Lanka?",
+    "options": [
+      "Mandodari",
+      "Indrajit",
+      "Vibhishana",
+      "Kumbhakarna"
+    ],
+    "correctAnswer": "Vibhishana"
+  },
+  {
+    "question": "Which divine hymn did Sage Agastya give to Rama before the war in Lanka?",
+    "options": [
+      "Brahmastra",
+      "Agneyastra",
+      "Aditya Hridaya Stotra",
+      "Vayavyastra"
+    ],
+    "correctAnswer": "Aditya Hridaya Stotra"
+  },
+  {
+    "question": "From which sacrifice did Indrajit obtain his invincibility, which Rama and Lakshmana had to break with a special strategy?",
+    "options": [
+      "Nishkramana yajna",
+      "Nirguna yajna",
+      "Nikumbhila yajna",
+      "Agni-vesha yajna"
+    ],
+    "correctAnswer": "Nikumbhila yajna"
+  },
+  {
+    "question": "According to Sage Vashishta, who is Rama in his essential form?",
+    "options": [
+      "An instrument of Vishnu",
+      "A part of Shiva",
+      "A form of Agni",
+      "The full incarnation of Vishnu"
+    ],
+    "correctAnswer": "The full incarnation of Vishnu"
+  },
+  {
+    "question": "Which Vanara did not retreat even a single step on the battlefield until he fulfilled his vow?",
+    "options": [
+      "Nila",
+      "Angada",
+      "Sushena",
+      "Hanuman"
+    ],
+    "correctAnswer": "Angada"
+  },
+  {
+    "question": "Whom did Hanuman anger in his childhood when he leapt up to seize the sun, thinking it to be a fruit?",
+    "options": [
+      "Varuna",
+      "Indra",
+      "Shani",
+      "Yama"
+    ],
+    "correctAnswer": "Indra"
+  },
+  {
+    "question": "When Jambavan reminded Hanuman of his ability to cross the ocean, whose blessing did Hanuman recall?",
+    "options": [
+      "Brahma",
+      "Indra",
+      "Vayu",
+      "Shiva"
+    ],
+    "correctAnswer": "Vayu"
+  },
+  {
+    "question": "Who was considered the wisest among Ravana’s ministers, who advised Ravana not to go to war?",
+    "options": [
+      "Dushana",
+      "Malayavan",
+      "Mala",
+      "Mandodari"
+    ],
+    "correctAnswer": "Malayavan"
+  },
+  {
+    "question": "After Rama prayed to the ocean god for three days without response, what did he first target with his arrow?",
+    "options": [
+      "The city of Sushena",
+      "The Saraswata region",
+      "The northern shore of the sea",
+      "The demon Drumila"
+    ],
+    "correctAnswer": "The northern shore of the sea"
+  },
+  {
+    "question": "In the great war, which weapon mainly rendered Lakshmana unconscious?",
+    "options": [
+      "Nagapasha",
+      "Shakti",
+      "Brahmashira",
+      "Nidrastra"
+    ],
+    "correctAnswer": "Shakti"
+  },
+  {
+    "question": "From where did Sage Vashishta’s wish-fulfilling cow Kamadhenu originate?",
+    "options": [
+      "The Kshira Sagara (Ocean of Milk)",
+      "From the gods during the churning of wood (arani)",
+      "From the solar realm",
+      "From a Himalayan place of penance"
+    ],
+    "correctAnswer": "The Kshira Sagara (Ocean of Milk)"
+  },
+  {
+    "question": "What do Ravana’s ten heads symbolically represent?",
+    "options": [
+      "The strength of ten heroes",
+      "Blessings of ten great gods",
+      "Ten vices such as lust, anger, delusion, etc.",
+      "Ten regions conquered by him"
+    ],
+    "correctAnswer": "Ten vices such as lust, anger, delusion, etc."
+  },
+  {
+    "question": "On which occasion did Rama first instruct Lakshmana about the ‘five pillars of dharma’?",
+    "options": [
+      "After Sita’s abduction",
+      "At Jatayu’s funeral rites",
+      "In Bharadwaja’s hermitage",
+      "After Ahalya’s redemption"
+    ],
+    "correctAnswer": "At Jatayu’s funeral rites"
+  },
+  {
+    "question": "Why did Rama shoot Vali from behind a tree?",
+    "options": [
+      "Vali could become invisible",
+      "According to the rules of warfare",
+      "Vali had a boon that no one facing him could kill him",
+      "On Sugriva’s advice"
+    ],
+    "correctAnswer": "Vali had a boon that no one facing him could kill him"
+  },
+  {
+    "question": "Ahiravana and Mahiravana, Ravana’s relatives, were rulers of which realm?",
+    "options": [
+      "Patala (netherworld)",
+      "Gandharva-loka",
+      "Naga-loka",
+      "Yaksha-loka"
+    ],
+    "correctAnswer": "Patala (netherworld)"
+  },
+  {
+    "question": "Which aid was most crucial in saving Lakshmana’s life?",
+    "options": [
+      "The Sanjeevani herb",
+      "The Vayavyastra",
+      "The mantra to counter Nagapasha",
+      "Indrastra"
+    ],
+    "correctAnswer": "The Sanjeevani herb"
+  },
+  {
+    "question": "By which goddess was Sita born?",
+    "options": [
+      "Aditi",
+      "Bhumi Devi (Earth goddess)",
+      "Ganga Devi",
+      "Anasuya"
+    ],
+    "correctAnswer": "Bhumi Devi (Earth goddess)"
+  },
+  {
+    "question": "According to traditional texts, what was the name of Ravana’s aerial chariot?",
+    "options": [
+      "Pushpaka Vimana",
+      "Maharatha",
+      "Mahaprahara chariot",
+      "Vijaya chariot"
+    ],
+    "correctAnswer": "Pushpaka Vimana"
+  },
+  {
+    "question": "On which incident did Sage Valmiki, moved by sorrow, compose the first verse of the Ramayana?",
+    "options": [
+      "The killing of the Krauncha bird",
+      "The redemption of Ahalya",
+      "The offering to Jatayu",
+      "Shabari’s service"
+    ],
+    "correctAnswer": "The killing of the Krauncha bird"
+  },
+  {
+    "question": "Which divine mantra did Vishvamitra teach Rama that gave him extraordinary skill in archery?",
+    "options": [
+      "Bala and Atibala mantras",
+      "Aditya Hridaya Stotra",
+      "Rama Raksha stotra",
+      "The Pranava mantra"
+    ],
+    "correctAnswer": "Bala and Atibala mantras"
+  },
+  {
+    "question": "At what moment did Rama first explain to the Vanara army the importance of unity and discipline?",
+    "options": [
+      "Before Hanuman left for Lanka",
+      "Before the building of the bridge (Setu)",
+      "After the battle between Vali and Sugriva",
+      "After Jatayu’s death"
+    ],
+    "correctAnswer": "Before the building of the bridge (Setu)"
+  },
+  {
+    "question": "Which weapon is said to be one that only Lord Shiva can quell, and Rama possessed its power?",
+    "options": [
+      "Pashupatastra",
+      "Vayavyastra",
+      "Brahmastra",
+      "Narayana-astra"
+    ],
+    "correctAnswer": "Pashupatastra"
+  },
+  {
+    "question": "When Angada planted his foot firmly in Ravana’s court as a challenge, which demon was the first who could not move it?",
+    "options": [
+      "Dushana",
+      "Trishira",
+      "Prahastha",
+      "Kumbhakarna’s army"
+    ],
+    "correctAnswer": "Prahastha"
+  },
+  {
+    "question": "Which sage cursed Ravana saying, ‘Your destruction will come at the hands of a man’?",
+    "options": [
+      "Narada",
+      "Agastya",
+      "Bhrigu",
+      "Vashishta"
+    ],
+    "correctAnswer": "Narada"
+  },
+  {
+    "question": "In the war for Lanka, which demon commander did Rama slay first?",
+    "options": [
+      "Akampana",
+      "Prahastha",
+      "Mandodari’s brother",
+      "Viradha"
+    ],
+    "correctAnswer": "Prahastha"
+  },
+  {
+    "question": "By which mark did Rama identify Sugriva from Vali during their combat?",
+    "options": [
+      "A mark on Vali’s ear",
+      "Vali’s tall stature",
+      "Vali’s radiant face",
+      "Vali’s black necklace around his neck"
+    ],
+    "correctAnswer": "Vali’s black necklace around his neck"
+  },
+  {
+    "question": "With the blessing of which being did Hanuman gain the power to free Lakshmana from Nagapasha?",
+    "options": [
+      "Agni",
+      "Varuna",
+      "Surya",
+      "Garuda"
+    ],
+    "correctAnswer": "Garuda"
+  },
+  {
+    "question": "After Rama prayed to the ocean and then released an arrow, which region dried up as a result?",
+    "options": [
+      "Sushena island",
+      "The forest region around Drumila",
+      "The Saraswata region",
+      "The entire land of Saupurna"
+    ],
+    "correctAnswer": "The forest region around Drumila"
+  },
+  {
+    "question": "According to descriptions of Ravana’s ten heads, in which head resided his ‘far-sighted intelligence’?",
+    "options": [
+      "The fifth",
+      "The seventh",
+      "The eighth",
+      "The tenth"
+    ],
+    "correctAnswer": "The seventh"
+  },
+  {
+    "question": "In the Ramayana, which demon is described as the only one who attained liberation in his final moments by chanting Rama’s name?",
+    "options": [
+      "Kabandha",
+      "Jatayu",
+      "Vali",
+      "Ahiravana"
+    ],
+    "correctAnswer": "Kabandha"
+  },
+  {
+    "question": "When Hanuman went to meet Sita in Lanka, who was the first to recognize his true identity?",
+    "options": [
+      "Trijata",
+      "Mandodari",
+      "Ravana",
+      "Surya’s son Akkamapati"
+    ],
+    "correctAnswer": "Trijata"
+  },
+  {
+    "question": "During Sita’s swayamvara, what was the name of the bow that Rama broke?",
+    "options": [
+      "Kaushika bow",
+      "Pinaka bow",
+      "Vishnu’s bow",
+      "Vaikuntha bow"
+    ],
+    "correctAnswer": "Pinaka bow"
+  },
+  {
+    "question": "After killing the demon Viradha, what unique truth did Rama and Lakshmana learn about him?",
+    "options": [
+      "He was the cursed son of a sage",
+      "He was a former commander of Lanka",
+      "He was Ravana’s secret brother",
+      "He had been cursed by Indra"
+    ],
+    "correctAnswer": "He was the cursed son of a sage"
+  },
+  {
+    "question": "Why were the demons in Ravana’s court unable to move Angada’s foot when he challenged them?",
+    "options": [
+      "Angada had divine strength granted by Brahma",
+      "Angada had taken a vow on his ancestors",
+      "Rama’s blessing kept his foot unmoving",
+      "Jambavan had granted him a special boon"
+    ],
+    "correctAnswer": "Rama’s blessing kept his foot unmoving"
+  },
+  {
+    "question": "After the burning of Lanka, what special praise did Rama give to Hanuman when he returned?",
+    "options": [
+      "O son of Vayu!",
+      "If Rama’s grace is there…",
+      "You are the support of my life",
+      "You are the dearest devotee of my heart"
+    ],
+    "correctAnswer": "You are the dearest devotee of my heart"
+  },
+  {
+    "question": "In the Ramayana, who was the demon named Malayavan, who gave Ravana his final advice against war?",
+    "options": [
+      "Ravana’s friend",
+      "Ravana’s maternal uncle",
+      "Ravana’s chief minister",
+      "Ravana’s father-in-law"
+    ],
+    "correctAnswer": "Ravana’s maternal uncle"
+  },
+  {
+    "question": "In the section praising Lakshmana, which special teaching explains to him the true essence of love for Rama?",
+    "options": [
+      "A vow of valour",
+      "Renunciation of ego",
+      "The highest stage of servitude (dasatva)",
+      "The yoga of steady intellect"
+    ],
+    "correctAnswer": "The highest stage of servitude (dasatva)"
+  },
+  {
+    "question": "After Vali’s death, what historic advice did Tara give to Sugriva about governing the kingdom?",
+    "options": [
+      "Always place Rama’s command above all",
+      "Complete war preparations quickly",
+      "Reorganize the Vanara army",
+      "Accept Rama as a guru before ruling"
+    ],
+    "correctAnswer": "Reorganize the Vanara army"
+  },
+  {
+    "question": "How did Hanuman kill Ravana’s son Akshayakumara?",
+    "options": [
+      "By throwing a mountain at him",
+      "By smashing him against a wall",
+      "By striking him with his fists",
+      "By striking him with his tail"
+    ],
+    "correctAnswer": "By striking him with his tail"
+  },
+  {
+    "question": "When Jambavan reminded Hanuman of his strength, which childhood event did he recall?",
+    "options": [
+      "Trying to seize the sun as a fruit",
+      "Enduring Indra’s thunderbolt",
+      "Leaping across the ocean in penance",
+      "Destroying demons in the forest"
+    ],
+    "correctAnswer": "Trying to seize the sun as a fruit"
+  },
+  {
+    "question": "In Lanka, which woman consoled Sita by describing dreams foretelling Ravana’s downfall?",
+    "options": [
+      "Mandodari",
+      "Trijata",
+      "Shurpanakha",
+      "Surasa"
+    ],
+    "correctAnswer": "Trijata"
+  },
+  {
+    "question": "Upon slaying which demon did Rama say, “When an Asura becomes righteous, he is more worthy of worship than the gods”?",
+    "options": [
+      "Vali",
+      "Kabandha",
+      "Viradha",
+      "Jatayu"
+    ],
+    "correctAnswer": "Viradha"
+  },
+  {
+    "question": "What kind of fruits did Shabari offer to Rama?",
+    "options": [
+      "Mangoes",
+      "Jambu fruits",
+      "Ber (jujube) fruits",
+      "Pomegranates"
+    ],
+    "correctAnswer": "Ber (jujube) fruits"
+  },
+  {
+    "question": "From which mountain did Hanuman first leap towards Lanka?",
+    "options": [
+      "Mahendra mountain",
+      "Rishyamukha mountain",
+      "Chitrakuta mountain",
+      "Malaya mountain"
+    ],
+    "correctAnswer": "Mahendra mountain"
+  },
+  {
+    "question": "After entering Lanka, where did Hanuman finally find Sita?",
+    "options": [
+      "In the inner chambers",
+      "Under the Ashoka grove",
+      "In Ravana’s palace",
+      "Near the Pushpaka Vimana"
+    ],
+    "correctAnswer": "Under the Ashoka grove"
+  },
+  {
+    "question": "Where did Rama first meet Sugriva?",
+    "options": [
+      "On Rishyamukha mountain",
+      "Near the caves of Kishkindha",
+      "At Chitrakuta",
+      "At Panchavati"
+    ],
+    "correctAnswer": "On Rishyamukha mountain"
+  },
+  {
+    "question": "What was the other name of Ravana’s son Indrajit?",
+    "options": [
+      "Nirajit",
+      "Meghanada",
+      "Kumbhajit",
+      "Aksha"
+    ],
+    "correctAnswer": "Meghanada"
+  },
+  {
+    "question": "For what reason did Rama, Lakshmana, and Sita have to go into exile?",
+    "options": [
+      "Because of Lakshmana’s mistake",
+      "Because of Queen Kaikeyi’s two boons",
+      "Because of Shatrughna’s demand",
+      "Because of King Janaka’s curse"
+    ],
+    "correctAnswer": "Because of Queen Kaikeyi’s two boons"
+  },
+  {
+    "question": "At the time of Jatayu’s death, how did Rama describe him?",
+    "options": [
+      "An old warrior",
+      "King of the birds",
+      "Like a father",
+      "An immortal hero"
+    ],
+    "correctAnswer": "Like a father"
+  },
+  {
+    "question": "When Sita was being abducted, what protective mark did Lakshmana draw around the hut?",
+    "options": [
+      "A circle of fire",
+      "The Lakshmana Rekha",
+      "A line of dharma",
+      "The Arka-vallabha line"
+    ],
+    "correctAnswer": "The Lakshmana Rekha"
+  },
+  {
+    "question": "During their exile, which river did Rama, Lakshmana, and Sita cross first?",
+    "options": [
+      "The Tamasa",
+      "The Yamuna",
+      "The Sarayu",
+      "The Narmada"
+    ],
+    "correctAnswer": "The Tamasa"
+  },
+  {
+    "question": "For which quality is Ravana’s brother Vibhishana especially praised in the Ramayana?",
+    "options": [
+      "Strength",
+      "Diplomacy",
+      "Truthfulness and righteousness",
+      "War skill"
+    ],
+    "correctAnswer": "Truthfulness and righteousness"
+  },
+  {
+    "question": "Who played the key role in making Sugriva a friend of Rama?",
+    "options": [
+      "Jambavan",
+      "Hanuman",
+      "Nila",
+      "Angada"
+    ],
+    "correctAnswer": "Hanuman"
+  },
+  {
+    "question": "From where did Sita take birth, according to the Ramayana?",
+    "options": [
+      "From the ocean",
+      "From the wind",
+      "From the earth",
+      "From Sage Kashyapa’s hermitage"
+    ],
+    "correctAnswer": "From the earth"
+  },
+  {
+    "question": "At which place did Rama slay Khara and Dushana?",
+    "options": [
+      "Chitrakuta",
+      "A battlefield in the forest",
+      "Panchavati",
+      "Dandaka forest"
+    ],
+    "correctAnswer": "Panchavati"
+  },
+  {
+    "question": "What was the name of Sugriva’s kingdom?",
+    "options": [
+      "Mathura",
+      "Kishkindha",
+      "Ayodhya",
+      "Lanka"
+    ],
+    "correctAnswer": "Kishkindha"
+  },
+  {
+    "question": "Where did Bharata come to meet Rama in order to persuade him to return?",
+    "options": [
+      "Chitrakuta",
+      "Panchavati",
+      "Atri’s hermitage",
+      "Kishkindha"
+    ],
+    "correctAnswer": "Chitrakuta"
+  },
+  {
+    "question": "During exile, with whom did Rama spend the very first night after leaving Ayodhya?",
+    "options": [
+      "With Guha the Nishada chief",
+      "With Sage Bharadwaja",
+      "With Shabari",
+      "With Vishvamitra"
+    ],
+    "correctAnswer": "With Guha the Nishada chief"
+  },
+  {
+    "question": "By what trick did Ravana manage to lure Rama and Lakshmana away at the time of Sita’s abduction?",
+    "options": [
+      "By a magical illusory deer",
+      "By a golden deer",
+      "By the guise of a beggar",
+      "By appearing as fire"
+    ],
+    "correctAnswer": "By a golden deer"
+  },
+  {
+    "question": "What was Angada’s relation to Vali?",
+    "options": [
+      "Friend",
+      "Nephew",
+      "Son",
+      "Fellow disciple"
+    ],
+    "correctAnswer": "Son"
+  },
+  {
+    "question": "Which Vanara is regarded as Sugriva’s chief adviser?",
+    "options": [
+      "Nila",
+      "Hanuman",
+      "Sushena",
+      "Mainda"
+    ],
+    "correctAnswer": "Hanuman"
+  },
+  {
+    "question": "In the war for Lanka, who first commanded Ravana’s army?",
+    "options": [
+      "Kumbhakarna",
+      "Prahastha",
+      "Indrajit",
+      "Akampana"
+    ],
+    "correctAnswer": "Prahastha"
+  },
+  {
+    "question": "By whom was Ahalya’s curse finally lifted?",
+    "options": [
+      "Lakshmana",
+      "Sri Rama",
+      "Vishvamitra",
+      "Agastya"
+    ],
+    "correctAnswer": "Sri Rama"
+  },
+  {
+    "question": "Before the war in Lanka, what advice did Vibhishana give to Ravana?",
+    "options": [
+      "Prepare more troops",
+      "Crown Indrajit as king",
+      "Return Sita to Rama",
+      "Attack Sugriva first"
+    ],
+    "correctAnswer": "Return Sita to Rama"
+  },
+  {
+    "question": "In Ayodhya, at which place did Sage Vashishta serve as chief priest?",
+    "options": [
+      "The royal palace",
+      "Vashishta’s hermitage",
+      "Panchavati",
+      "Chitrakuta"
+    ],
+    "correctAnswer": "Vashishta’s hermitage"
+  },
+  {
+    "question": "For what reason did Rama slay Tataka?",
+    "options": [
+      "She was destroying the forest and disturbing sages",
+      "She attacked Sita",
+      "She insulted Lakshmana",
+      "She blocked the royal road"
+    ],
+    "correctAnswer": "She was destroying the forest and disturbing sages"
+  },
+  {
+    "question": "What was the name of Sugriva’s wife?",
+    "options": [
+      "Ruma",
+      "Tara",
+      "Mandodari",
+      "Trijata"
+    ],
+    "correctAnswer": "Ruma"
+  },
+  {
+    "question": "Where did Bharata place Rama’s royal sandals to symbolize his rule?",
+    "options": [
+      "Nandigrama",
+      "The royal court of Ayodhya",
+      "Chitrakuta",
+      "Vashishta’s hermitage"
+    ],
+    "correctAnswer": "Nandigrama"
+  },
+  {
+    "question": "Before attacking Lanka, what battle cry did the Vanaras raise?",
+    "options": [
+      "Jai Shri Rama!",
+      "Victory to Hanuman!",
+      "Victory to Kishkindha!",
+      "Destruction to the demons!"
+    ],
+    "correctAnswer": "Jai Shri Rama!"
+  },
+  {
+    "question": "After Lakshmana was rendered unconscious, what advice did Sushena give?",
+    "options": [
+      "Stop the attack on Lanka",
+      "Send Hanuman to get the Sanjeevani herb",
+      "Abandon the war",
+      "Go back to bring Sita first"
+    ],
+    "correctAnswer": "Send Hanuman to get the Sanjeevani herb"
+  },
+  {
+    "question": "What relation was Mandodari to Ravana?",
+    "options": [
+      "His wife",
+      "His sister",
+      "His mother",
+      "His daughter"
+    ],
+    "correctAnswer": "His wife"
+  },
+  {
+    "question": "How did Sita address Ravana when speaking to him?",
+    "options": [
+      "Adharmi (unrighteous one)",
+      "Lankesh (Lord of Lanka)",
+      "Shameless one",
+      "King of demons"
+    ],
+    "correctAnswer": "Lankesh (Lord of Lanka)"
+  },
+  {
+    "question": "What was the name of Lakshmana’s wife?",
+    "options": [
+      "Urmila",
+      "Mandavi",
+      "Shruta",
+      "Sutikshna"
+    ],
+    "correctAnswer": "Urmila"
+  },
+  {
+    "question": "With which weapon did Indrajit bind Rama and Lakshmana?",
+    "options": [
+      "Shakti",
+      "Nagapasha",
+      "Vayavyastra",
+      "Agneyastra"
+    ],
+    "correctAnswer": "Nagapasha"
+  },
+  {
+    "question": "Jatayu is regarded as the king of which kind of bird?",
+    "options": [
+      "Garuda (eagle-like)",
+      "Eagle",
+      "Vulture",
+      "Swan"
+    ],
+    "correctAnswer": "Vulture"
+  },
+  {
+    "question": "What special power did Nala and Nila have that helped them build the bridge to Lanka?",
+    "options": [
+      "To walk on water",
+      "To make stones float",
+      "To control the wind",
+      "To calm fire"
+    ],
+    "correctAnswer": "To make stones float"
+  },
+  {
+    "question": "For how many days did the demons try to wake Kumbhakarna from his sleep?",
+    "options": [
+      "One day",
+      "One and a half days",
+      "Six hours",
+      "Three days"
+    ],
+    "correctAnswer": "Three days"
+  },
+  {
+    "question": "What advice did Maricha give to Ravana?",
+    "options": [
+      "Return Sita",
+      "Go to war",
+      "Kill Vali",
+      "Do not abduct Sita"
+    ],
+    "correctAnswer": "Do not abduct Sita"
+  },
+  {
+    "question": "How did Hanuman spread fire throughout Lanka?",
+    "options": [
+      "From the fire on his tail",
+      "By lightning",
+      "Using the Brahmastra",
+      "By Agni’s personal blessing"
+    ],
+    "correctAnswer": "From the fire on his tail"
+  },
+  {
+    "question": "Who mainly comforted Sita while she was in Lanka?",
+    "options": [
+      "Surasa",
+      "Mandodari",
+      "Trijata",
+      "Shurpanakha"
+    ],
+    "correctAnswer": "Trijata"
+  },
+  {
+    "question": "Where were Lava and Kusha born?",
+    "options": [
+      "Valmiki’s hermitage",
+      "A cave in Chitrakuta",
+      "Panchavati",
+      "The palace of Ayodhya"
+    ],
+    "correctAnswer": "Valmiki’s hermitage"
+  },
+  {
+    "question": "In which art did Sage Valmiki consider Lava and Kusha to be especially skilled?",
+    "options": [
+      "The art of war",
+      "Recitation of poetry",
+      "Folk music",
+      "Archery"
+    ],
+    "correctAnswer": "Recitation of poetry"
+  },
+  {
+    "question": "Who tied up the horse of the Ashwamedha sacrifice?",
+    "options": [
+      "Lava",
+      "Kusha",
+      "Both brothers",
+      "Valmiki"
+    ],
+    "correctAnswer": "Both brothers"
+  },
+  {
+    "question": "How did Rama first come to know that Lava and Kusha were actually his own sons?",
+    "options": [
+      "Sita told him",
+      "From the song recited by Lava and Kusha",
+      "Valmiki told him",
+      "Through a message from Hanuman"
+    ],
+    "correctAnswer": "From the song recited by Lava and Kusha"
+  },
+  {
+    "question": "At the end, what request did Sita make to the Earth?",
+    "options": [
+      "Forgive Rama",
+      "Take me back into your womb",
+      "Protect Lava and Kusha",
+      "Grant me another exile"
+    ],
+    "correctAnswer": "Take me back into your womb"
+  },
+  {
+    "question": "When Sita merged into the earth, which deity bore witness to this event?",
+    "options": [
+      "Agni",
+      "Bhumi Devi (Earth goddess)",
+      "Indra",
+      "A divine voice from the sky"
+    ],
+    "correctAnswer": "Bhumi Devi (Earth goddess)"
+  },
+  {
+    "question": "Who taught the art of warfare to Lava and Kusha?",
+    "options": [
+      "Valmiki",
+      "Sita",
+      "Hanuman",
+      "Angada"
+    ],
+    "correctAnswer": "Valmiki"
+  }
 ]
-

@@ -28,8 +28,8 @@ alert("📣 Coming Soon! Get ready for Sanatan Dham's biggest championship — s
         <div className="mt-6">
           <button
             className="bg-yellow-500 text-black px-6 py-2 rounded-full text-lg font-semibold shadow-md hover:bg-yellow-400 transition duration-300"
-            // onClick={handleStartExam}
-            onClick={handlenoexam}
+            onClick={handleStartExam}
+            // onClick={handlenoexam}
           >
             Start Exam
           </button>

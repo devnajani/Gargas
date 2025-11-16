@@ -47,7 +47,7 @@ const NavbarAll = () => {
           </button>
 
           {/* Desktop Navigation Links */}
-          <ul className={`hidden md:flex md:space-x-8 text-xl font-bold text-white transition-all duration-300 
+          {/* <ul className={`hidden md:flex md:space-x-8 text-xl font-bold text-white transition-all duration-300 
             ${scrolled ? "mx-auto" : ""}`}>
             {["Home", "About", "Results", "Exam", "Downloads", "Contact", "Register"].map((item, index) => (
               <li key={index} className="hover:text-yellow-300 transition duration-300">
@@ -55,7 +55,7 @@ const NavbarAll = () => {
               </li>
               
             ))}
-          </ul>
+          </ul> */}
         </div>
 
         {/* Mobile Menu - Slide in from Left */}
